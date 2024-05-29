@@ -1,81 +1,50 @@
-pragma solidity ^0.5.0;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.2;
 
-import "@chainlink/contracts/src/v0.5/ChainlinkClient.sol";
+import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
+import "@chainlink/contracts/src/v0.8/dev/ChainlinkClient.sol";
+import "@chainlink/contracts/src/v0.8/dev/ConfirmedOwner.sol";
 
-contract ProofOfReserve is ChainlinkClient {
+contract ProofOfReserveConsumer is ChainlinkClient, ConfirmedOwner {
     using Chainlink for Chainlink.Request;
 
-    uint256 public reserveAmount;
+    uint256 public proofOfReserve;
     bytes32 private jobId;
     uint256 private fee;
-    string private apiUrl;
-    string private apiPath;
-    address public owner;
 
-    event ReserveVerified(uint256 reserveAmount);
-    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
+    event RequestProofOfReserve(bytes32 indexed requestId, uint256 proofOfReserve);
 
-    modifier onlyOwner() {
-        require(msg.sender == owner, "Caller is not the owner");
-        _;
+    /**
+     * Network: Kovan
+     * Oracle: 0x7AFe1118Ea78C1eae84ca8feE5C65Bc76CcF879e (Example Oracle)
+     * Job ID: b6602d14e4734c49a5e1ce19d45a4632 (Example Job ID)
+     * Fee: 0.1 LINK
+     */
+    constructor() ConfirmedOwner(msg.sender) {
+        setChainlinkToken(0xa36085F69e2889c224210F603D836748e7dC0088);
+        setChainlinkOracle(0x7AFe1118Ea78C1eae84ca8feE5C65Bc76CcF879e);
+        jobId = "b6602d14e4734c49a5e1ce19d45a4632";
+        fee = 0.1 * 10 ** 18; // 0.1 LINK
     }
 
-    constructor(
-        address _link,
-        address _oracle,
-        string memory _jobId,
-        uint256 _fee,
-        string memory _apiUrl,
-        string memory _apiPath
-    ) public {
-        setChainlinkToken(_link);
-        setChainlinkOracle(_oracle);
-        jobId = stringToBytes32(_jobId);
-        fee = _fee;
-        apiUrl = _apiUrl;
-        apiPath = _apiPath;
-        owner = msg.sender;
+    function requestProofOfReserveData() public returns (bytes32 requestId) {
+        Chainlink.Request memory request = buildChainlinkRequest(jobId, address(this), this.fulfillProofOfReserve.selector);
+        // Send the request
+        return sendChainlinkRequest(request, fee);
     }
 
-    function requestReserveData() public onlyOwner returns (bytes32 requestId) {
-        Chainlink.Request memory request = buildChainlinkRequest(
-            jobId,
-            address(this),
-            this.fulfill.selector
-        );
-
-        // Set the URL to perform the GET request on
-        request.add("get", apiUrl);
-
-        // Define the path to find the data we want
-        request.add("path", apiPath);
-
-        // Sends the request
-        return sendChainlinkRequestTo(chainlinkOracleAddress(), request, fee);
+    function fulfillProofOfReserve(bytes32 _requestId, uint256 _proofOfReserve) public recordChainlinkFulfillment(_requestId) {
+        proofOfReserve = _proofOfReserve;
+        emit RequestProofOfReserve(_requestId, _proofOfReserve);
     }
 
-    function fulfill(bytes32 _requestId, uint256 _reserveAmount)
-        public
-        recordChainlinkFulfillment(_requestId)
-    {
-        reserveAmount = _reserveAmount;
-        emit ReserveVerified(reserveAmount);
+    function getLatestProofOfReserve() public view returns (uint256) {
+        return proofOfReserve;
     }
 
-    function transferOwnership(address newOwner) public onlyOwner {
-        require(newOwner != address(0), "New owner is the zero address");
-        emit OwnershipTransferred(owner, newOwner);
-        owner = newOwner;
-    }
-
-    function stringToBytes32(string memory source) internal pure returns (bytes32 result) {
-        bytes memory tempEmptyStringTest = bytes(source);
-        if (tempEmptyStringTest.length == 0) {
-            return 0x0;
-        }
-
-        assembly {
-            result := mload(add(source, 32))
-        }
+    // Function to withdraw LINK from the contract
+    function withdrawLink() external onlyOwner {
+        LinkTokenInterface link = LinkTokenInterface(chainlinkTokenAddress());
+        require(link.transfer(msg.sender, link.balanceOf(address(this))), "Unable to transfer");
     }
 }

@@ -4,7 +4,7 @@
   "description": "DeFi Token Staking App",
   "author": "c-money",
   "dependencies": {
-    "@chainlink/contracts": "^0.1.6",
+    "@chainlink/contracts": "^0.1.9",
     "@types/jest": "^26.0.24",
     "@types/node": "^16.3.1",
     "@types/react": "^17.0.14",

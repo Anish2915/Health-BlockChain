@@ -26,7 +26,7 @@ function Trade() {
             {nft.length > 0 ? (
                 <div>
                     {nft.map((item, index) => (
-                        <Link key={index} to={`/${item.name}`}>
+                        <Link key={index} to={`/nft/${item.name}`}>
                             <img src={item.image} alt={item.name} />
                             <h3>{item.name}</h3>
                             <p>{item.description}</p>

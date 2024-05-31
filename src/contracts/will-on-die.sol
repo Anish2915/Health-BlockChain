@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.8.2 <0.9.0;
+pragma solidity >=0.8.19 <0.9.0;
 
 contract OnDie{
     address owner;
     uint MyEther;
     bool isDead;
 
-    constructor() payable public {
+    constructor() payable {
         owner = msg.sender;
         MyEther = msg.value;
         isDead = false;

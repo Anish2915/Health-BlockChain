@@ -8,7 +8,7 @@ import CompanyNFT from '../../truffle_abis/CompanyNFT.json';
 function Company() {
     const [selfNft, setSelfNft] = useState([]);
 
-    const hnadleDeployNft = async () => {
+    const handleDeployNft = async () => {
         try {
             if (!window.ethereum) {
                 alert('MetaMask is not installed!');
@@ -35,7 +35,7 @@ function Company() {
 
     return (
         <section>
-            <button onClick={hnadleDeployNft}>Deploy</button>
+            <button onClick={handleDeployNft}>Deploy</button>
             {selfNft.length > 0 ? (
                 <div>
                     {selfNft.map((item, index) => (

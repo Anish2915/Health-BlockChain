@@ -15,8 +15,8 @@ import Company from './pages/Company';
 class App extends Component{
 
     async UNSAFE_componentWillMount(){
-        // await this.loadWeb3();
-        // await this.loadBlockchainData();
+        await this.loadWeb3();
+        await this.loadBlockchainData();
     }
 
     async loadWeb3() {

@@ -8,6 +8,7 @@ import CompanyNFT from '../../truffle_abis/CompanyNFT.json';
 
 function Trade() {
     const [buyNft, setBuyNft] = useState([]);
+    const [sellNft, setSellNft] = useState([]);
 
     const fetchBuyNfts = async () => {
         try {
@@ -45,13 +46,13 @@ function Trade() {
         <section>
             <nav>
                 <ul>
-                    <li><button onClick={fetchBuyNfts}>Fetch Names of nft</button></li>
+                    <li><button onClick={fetchBuyNfts}>Fetch Names of NFT</button></li>
                     <li><button onClick={fetchSellNft}>Sell NFT</button></li>
                 </ul>
             </nav>
-            {nft.length > 0 ? (
+            {buyNft.length > 0 ? (
                 <div>
-                    {nft.map((item, index) => (
+                    {buyNft.map((item, index) => (
                         <Link key={index} to={`/nft/${item.name}`}>
                             <img src={item.image} alt={item.name} />
                             <h3>{item.name}</h3>
@@ -61,7 +62,21 @@ function Trade() {
                     ))}
                 </div>
             ) : (
-                <h2>No NFTs available</h2>
+                <h2>No NFTs to buy available</h2>
+            )}
+            {sellNft.length > 0 ? (
+                <div>
+                    {sellNft.map((item, index) => (
+                        <Link key={index} to={`/nft/${item.name}`}>
+                            <img src={item.image} alt={item.name} />
+                            <h3>{item.name}</h3>
+                            <p>{item.description}</p>
+                            <p>{item.price}</p>
+                        </Link>
+                    ))}
+                </div>
+            ) : (
+                <h2>No NFTs to sell available</h2>
             )}
         </section>
     )

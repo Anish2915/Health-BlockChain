@@ -2,6 +2,7 @@ import React , {Component} from 'react'
 import './App.css'
 import Web3 from 'web3';
 import Tether from '../truffle_abis/Tether.json'
+import RWD from '../truffle_abis/RWD.json'
 
 class App extends Component{
 
@@ -27,7 +28,7 @@ class App extends Component{
         const web3 = window.web3;
         const account = await web3.eth.getAccounts();
         console.log(account);
-        this.setState({account: account[0]});
+        this.setState({account: account[1]});
 
         const networkId = await web3.eth.net.getId();
         const tetherData = Tether.networks[networkId];
@@ -41,6 +42,19 @@ class App extends Component{
         else{
             window.alert('Error : Tether contract not deployed');
         }
+
+        const rwdData = RWD.networks[networkId];
+        if(rwdData){
+            const rwd = new web3.eth.Contract(RWD.abi,rwdData.address);
+            this.setState({rwd});
+            let rwdBalance = await rwd.methods.balanceOf(this.state.account).call();
+            this.setState({rwdBalance: rwdBalance.toString()});
+            console.log({balance : rwdBalance});
+        }
+        else{
+            window.alert('Error : RWD contract not deployed');
+        }
+
     }
 
     constructor(props){
@@ -48,7 +62,9 @@ class App extends Component{
         this.state = {
             account: '0x0',
             tether: {},
-            tetherBalance: '0'
+            tetherBalance: '0',
+            rwd: {},
+            rwdBalance: '0'
         }
     }
 
@@ -57,6 +73,7 @@ class App extends Component{
             <div className='text-center'>
                 <h>{this.state.account}</h>
                 <h1>{window.web3.utils.fromWei(this.state.tetherBalance,'Ether')}</h1>
+                <h2>{window.web3.utils.fromWei(this.state.rwdBalance,'Ether')}</h2>
             </div>
         )
     }

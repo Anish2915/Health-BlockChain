@@ -1,8 +1,6 @@
 const Tether = artifacts.require('Tether');
 const RWD = artifacts.require('RWD');
 const DecentralBank = artifacts.require('DecentralBank');
-const OnDie = artifacts.require("OnDie");
-const ProofOfReserve = artifacts.require('ProofOfReserve');
 
 
 module.exports = async function (deployer,network,accounts){

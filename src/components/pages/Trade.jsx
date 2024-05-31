@@ -7,9 +7,9 @@ import '../styles/Trade.css';
 import CompanyNFT from '../../truffle_abis/CompanyNFT.json';
 
 function Trade() {
-    const [nft, setNft] = useState([]);
+    const [buyNft, setBuyNft] = useState([]);
 
-    const fetchNfts = async () => {
+    const fetchBuyNfts = async () => {
         try {
             // Connect to Ethereum provider
             const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -45,8 +45,8 @@ function Trade() {
         <section>
             <nav>
                 <ul>
-                    <button onClick={fetchNfts}>Fetch Names of nft</button>
-                    <li onClick={fetchSellNft}>Sell NFT</li>
+                    <li><button onClick={fetchBuyNfts}>Fetch Names of nft</button></li>
+                    <li><button onClick={fetchSellNft}>Sell NFT</button></li>
                 </ul>
             </nav>
             {nft.length > 0 ? (

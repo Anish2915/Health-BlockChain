@@ -6,7 +6,7 @@ import '../styles/Company.css';
 function Company() {
     const [selfNft, setSelfNft] = useState([]);
 
-    const handleDeployNft = async () => {
+    const hnadleDeployNft = async () => {
         console.log('Deploying NFT.');
     }
 

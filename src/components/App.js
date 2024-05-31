@@ -3,12 +3,19 @@ import './App.css'
 import Web3 from 'web3';
 import Tether from '../truffle_abis/Tether.json'
 import RWD from '../truffle_abis/RWD.json'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+// Importing pages and components
+import NavbarUser from './comp/NavbarUser';
+import Home from './pages/Home';
+import Trade from './pages/Trade';
+import CrossChain from './pages/CrossChain';
 
 class App extends Component{
 
     async UNSAFE_componentWillMount(){
-        await this.loadWeb3();
-        await this.loadBlockchainData();
+        // await this.loadWeb3();
+        // await this.loadBlockchainData();
     }
 
     async loadWeb3() {
@@ -74,6 +81,14 @@ class App extends Component{
                 <h>{this.state.account}</h>
                 <h1>{window.web3.utils.fromWei(this.state.tetherBalance,'Ether')}</h1>
                 <h2>{window.web3.utils.fromWei(this.state.rwdBalance,'Ether')}</h2>
+                <BrowserRouter>
+                    <NavbarUser />
+                    <Routes>
+                        <Route to='/' element={Home}/>
+                        <Route to='/trade' element={Trade} />
+                        <Route to='/cross-chain' element={CrossChain} />
+                    </Routes>
+                </BrowserRouter>
             </div>
         )
     }

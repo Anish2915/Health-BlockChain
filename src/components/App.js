@@ -1,5 +1,5 @@
-import React , {Component} from 'react'
-import './App.css'
+import React , {Component} from 'react';
+import './App.css';
 import Web3 from 'web3';
 import Tether from '../truffle_abis/Tether.json'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -9,6 +9,7 @@ import NavbarUser from './comp/NavbarUser';
 import Home from './pages/Home';
 import Trade from './pages/Trade';
 import CrossChain from './pages/CrossChain';
+import Company from './pages/Company';
 
 class App extends Component{
 
@@ -65,9 +66,10 @@ class App extends Component{
                 <BrowserRouter>
                     <NavbarUser />
                     <Routes>
-                        <Route to='/' element={Home}/>
-                        <Route to='/trade' element={Trade} />
-                        <Route to='/cross-chain' element={CrossChain} />
+                        <Route to='/' element={<Home />}/>
+                        <Route to='/trade' element={<Trade />} />
+                        <Route to='/cross-chain' element={<CrossChain />} />
+                        <Route to='/company' element={<Company />} />
                     </Routes>
                 </BrowserRouter>
             </div>

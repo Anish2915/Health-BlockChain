@@ -85,10 +85,10 @@ class App extends Component{
                 <BrowserRouter>
                     <NavbarUser />
                     <Routes>
-                        <Route to='/' element={<Home />}/>
-                        <Route to='/trade' element={<Trade />} />
-                        <Route to='/cross-chain' element={<CrossChain />} />
-                        <Route to='/company' element={<Company />} />
+                        <Route path='/' element={<Home />}/>
+                        <Route path='/trade' element={<Trade />} />
+                        <Route path='/cross-chain' element={<CrossChain />} />
+                        <Route path='/company' element={<Company />} />
                     </Routes>
                 </BrowserRouter>
             </div>

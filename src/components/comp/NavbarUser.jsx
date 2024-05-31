@@ -24,6 +24,7 @@ function NavbarUser() {
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/trade">Trade</Link></li>
                     <li><Link to="/cross-chain">Change Chain</Link></li>
+                    <li><Link to='/company'>Deploy NFTs</Link></li>
                 </ul>
             </nav>
             <div>

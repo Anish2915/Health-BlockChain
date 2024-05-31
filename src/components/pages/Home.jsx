@@ -34,7 +34,7 @@ function Home() {
     }
 
     return (
-        <section>
+        <section className='Home'>
             <form onSubmit={handleFormSubmit}>
                 <input
                     ref={imageRef}

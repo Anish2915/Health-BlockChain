@@ -1,0 +1,96 @@
+/* NavbarUser.css */
+
+/* Reset default styles for lists */
+.NavbarUser ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header styles */
+.NavbarUser {
+    background-color: #333; /* Set your desired background color */
+    color: #fff; /* Set your desired text color */
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.NavbarUser nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 30%;
+}
+
+/* Logo styles */
+.NavbarUser .logo img {
+    width: 100px; /* Adjust the logo size as needed */
+}
+
+/* Navigation links styles */
+.NavbarUser ul {
+    display: flex;
+}
+
+.NavbarUser ul li {
+    margin-right: 1rem; /* Add spacing between navigation items */
+}
+
+.NavbarUser ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.NavbarUser ul li a:hover {
+    color: #ffcc00; /* Set your desired hover color */
+}
+
+/* Right styles */
+.NavbarUser .right-on-nav {
+    display: flex;
+    align-items: center;
+}
+
+/* Search bar styles */
+.NavbarUser .search-bar {
+    display: flex;
+}
+
+.NavbarUser .search-bar input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.NavbarUser .search-bar button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+/* Account styles */
+.NavbarUser .account {
+    margin-right: 1rem;
+    border: none;
+    color: #ffcc00;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    background-color: transparent;
+}
+
+.NavbarUser button {
+    margin-right: 1rem;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    background-color: transparent;
+}
+
+.NavbarUser button:hover {
+    color: #ffcc00; /* Set your desired hover color */
+}

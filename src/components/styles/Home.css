@@ -1,0 +1,42 @@
+/* Home.css */
+
+.Home {
+    /* Your component-specific styles here */
+    /* For example: */
+    padding: 20px;
+    background-color: #f5f5f5;
+    /* Add more styles as needed */
+}
+
+/* Style the buttons */
+.Home button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.Home button:hover {
+    background-color: #0056b3;
+}
+
+/* Style the input file elements */
+.Home input[type="file"] {
+    display: none;
+}
+
+.Home label {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.Home label:hover {
+    background-color: #0056b3;
+}

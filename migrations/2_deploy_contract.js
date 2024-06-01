@@ -1,8 +1,7 @@
 const Tether = artifacts.require('Tether');
 const RWD = artifacts.require('RWD');
 const DecentralBank = artifacts.require('DecentralBank');
-const OnDie = artifacts.require("OnDie");
-const ProofOfReserve = artifacts.require('ProofOfReserve');
+const CompanyNFT = artifacts.require('CompanyNFT');
 
 
 module.exports = async function (deployer,network,accounts){
@@ -20,6 +19,22 @@ module.exports = async function (deployer,network,accounts){
     await rwd.transfer(decentralbank.address , '10000000000000000000000');
     await tether.transfer(accounts[1],'2000000000000000000');
     
-    
+    await deployer.deploy(CompanyNFT, decentralbank.address);
+    const companyNFT = await CompanyNFT.deployed();
+
+    const tx = await companyNFT.registerCompany("Anish", { from: accounts[0] });
+    console.log('Company registration transaction hash:', tx.tx);
+
+    // Print event details
+    const event = tx.logs.find(log => log.event === 'CompanyRegistered');
+    if (event) {
+        console.log(`CompanyRegistered event: companyAddress = ${event.args.companyAddress}, name = ${event.args.name}`);
+    } else {
+        console.log('CompanyRegistered event not found');
+    }
+
+    // Verify if the company is registered
+    const company = await companyNFT.companies(accounts[0]);
+    console.log('Registered company:', company);
     
 };

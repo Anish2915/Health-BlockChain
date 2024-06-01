@@ -99,7 +99,7 @@ class App extends Component{
                     <NavbarUser account={this.state.account} setAccount={this.setAccount} />
                     <Routes>
                         <Route path='/' element={<Home account={this.state.account} setAccount={this.setAccount} />}/>
-                        <Route path='/trade' element={<Trade props={this.props} account={this.state.account} />} />
+                        <Route path='/trade' element={<Trade account={this.state.account} setAccount={this.setAccount} />} />
                         <Route path='/cross-chain' element={<CrossChain />} />
                         <Route path='/company' element={<Company />} />
                     </Routes>

@@ -5,10 +5,8 @@ import { ethers } from 'ethers';
 // Importing styles
 import '../styles/Trade.css';
 import CompanyNFT from '../../truffle_abis/CompanyNFT.json';
-import Trade from '../../truffle_abis/Trade.json'
-import RWD from '../../truffle_abis/RWD.json'
 
-function Trading() {
+function Trading({ account, setAccount }) {
     const [buyNft, setBuyNft] = useState([]);
     const [sellNft, setSellNft] = useState([]);
     const [activeTab, setActiveTab] = useState('buy');
@@ -18,22 +16,25 @@ function Trading() {
         try {
             // Connect to Ethereum provider
             const provider = new ethers.providers.Web3Provider(window.ethereum);
-            const contractAddress = '0x26Db3ce9F9F7EF95ae69627716DFFb45F4E5e48D'; // Contract address
+            const contractAddress = '0x0836c013763A153814B62FCBcCabd4f2781F7d94'; // Contract address
             const contract = new ethers.Contract(contractAddress, CompanyNFT.abi, provider);
 
             // Fetch NFT count
+            
             const nftCount = await contract.nextTokenId();
 
             // Fetch NFTs
             const nftList = [];
             for (let i = 0; i < nftCount; i++) {
                 const nftInfo = await contract.nfts(i);
+                if(nftInfo.CurrentlyUnder == false){
                 nftList.push({
                     tokenId: i,
                     name: nftInfo.name,
-                    duration: nftInfo.duration,
+                    // duration: nftInfo.duration,
                     price: ethers.utils.formatEther(nftInfo.price)
                 });
+            }
             }
 
             console.log(nftList);
@@ -43,32 +44,22 @@ function Trading() {
         }
     };
 
-    const buyNftClick = async (tokenId, price) => {
+    const buyNftClick = async (tokenId) => {
         try {
             // Connect to Ethereum provider
             console.log(tokenId);
-            console.log(price);
 
             const provider = new ethers.providers.Web3Provider(window.ethereum);
             const signer = provider.getSigner();
-            const contractAddress = '0x039B628985c9402474953937FBb03bb9F300e0c6'; // Contract address
-            const contract = new ethers.Contract(contractAddress, Trade.abi, signer);
-            const rewardTokenAddress = '0xC0Eba18cd79Ba65be8AFeb6ac5A5dDECE9723c39'; // Replace with actual reward token address
-            const rewardToken = new ethers.Contract(rewardTokenAddress, RWD.abi, signer); // Replace with actual reward token ABI
-    
-            // Check user's reward token balance
-            const userAddress = await signer.getAddress();
-            const balance = await rewardToken.balanceOf(userAddress);
+            const contractAddress = '0x0836c013763A153814B62FCBcCabd4f2781F7d94'; // Contract address
+            const contract = new ethers.Contract(contractAddress, CompanyNFT.abi, signer);
+
             
             // const formattedPrice = ethers.utils.parseUnits(price.toString(), 'ether');
             // console.log(formattedPrice);
     
-            
-    
-            
-    
             // Call the buyNFT function from the smart contract
-            const tx = await contract.buyNFT(tokenId, '1000000000000000000');
+            const tx = await contract.buyNFT(tokenId);
             
             // Wait for the transaction to be mined
             await tx.wait();
@@ -81,7 +72,63 @@ function Trading() {
 
     const fetchSellNft = async () => {
         setActiveTab('sell');
+        try {
+            // Connect to Ethereum provider
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            const contractAddress = '0x0836c013763A153814B62FCBcCabd4f2781F7d94'; // Contract address
+            const contract = new ethers.Contract(contractAddress, CompanyNFT.abi, provider);
+
+            // Fetch NFT count
+            
+            const nftCount = await contract.nextTokenId();
+
+            // Fetch NFTs
+            const nftList = [];
+            for (let i = 0; i < nftCount; i++) {
+                const nftInfo = await contract.nfts(i);
+                if(nftInfo.owner.toLowerCase() === account){
+                nftList.push({
+                    tokenId: i,
+                    name: nftInfo.name,
+                    // duration: nftInfo.duration,
+                    price: ethers.utils.formatEther(nftInfo.price)
+                });
+            }
+            }
+
+            console.log(nftList);
+            setSellNft(nftList);
+        } catch (error) {
+            console.error('Error fetching NFTs:', error);
+        }
     }
+
+    const SellNftClick = async (tokenId) => {
+        try {
+            // Connect to Ethereum provider
+            console.log(tokenId);
+
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            const signer = provider.getSigner();
+            const contractAddress = '0x0836c013763A153814B62FCBcCabd4f2781F7d94'; // Contract address
+            const contract = new ethers.Contract(contractAddress, CompanyNFT.abi, signer);
+
+            
+            // const formattedPrice = ethers.utils.parseUnits(price.toString(), 'ether');
+            // console.log(formattedPrice);
+    
+            // Call the buyNFT function from the smart contract
+            const tx = await contract.sellNFT(tokenId);
+            
+            // Wait for the transaction to be mined
+            await tx.wait();
+    
+            console.log('NFT purchased successfully', tx);
+        } catch (error) {
+            console.error('Error purchasing NFT:', error);
+        }
+    };
+
 
     const activeLink = (tab) => {
         if (tab === activeTab) {
@@ -110,7 +157,7 @@ function Trading() {
                                 <p>{item.description}</p>
                                 <p>{item.price}</p>
                             </Link>
-                            <button onClick={() => buyNftClick(item.tokenId, item.price)}>Buy NFT</button>
+                            <button onClick={() => buyNftClick(item.tokenId)}>Buy NFT</button>
                             </div>
                         ))}
                     </div>
@@ -121,12 +168,15 @@ function Trading() {
                 sellNft.length > 0 ? (
                     <div>
                         {sellNft.map((item, index) => (
+                            <div>
                             <Link key={index} to={`/nft/${item.name}`}>
                                 <img src={item.image} alt={item.name} />
                                 <h3>{item.name}</h3>
                                 <p>{item.description}</p>
                                 <p>{item.price}</p>
                             </Link>
+                            <button onClick={() => SellNftClick(item.tokenId)}>Sell NFT</button>
+                            </div>
                         ))}
                     </div>
                 ) : (

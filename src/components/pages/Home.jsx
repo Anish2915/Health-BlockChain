@@ -9,6 +9,9 @@ import '../styles/Home.css';
 
 // Importing comp
 import Card from '../comp/Card';
+import Upload from '../../truffle_abis/Upload.json'
+const RewardAddress = '0x0d81FfbccD514b1645BBcE3F417F280b1C811C01';
+const UploadAddress = '0x1A7A9F8603Fb5a499552603206576F0e5d968e35';
 
 function Home({ account, setAccount }) {
     const [imageToJudge, setImageToJudge] = useState(null);
@@ -16,6 +19,8 @@ function Home({ account, setAccount }) {
     const [activeSection, setActiveSection] = useState('mybmi');
     const imageRef = useRef(null);
     const docRef = useRef(null);
+
+    const [contract, setContract] = useState(null);
 
     const handleImgClick = () => {
         imageRef.current.click();
@@ -72,7 +77,7 @@ function Home({ account, setAccount }) {
     const fetchRwdBalance = async () => {
         try {
             const provider = new ethers.providers.Web3Provider(window.ethereum);
-            const rwdContractAddress = '0x3AD56B29f3f2b9BF0912cD821121874b1fec7255'; // Replace with actual RWD token contract address
+            const rwdContractAddress = RewardAddress; // Replace with actual RWD token contract address
             const rwdContractAbi = ['function balanceOf(address) view returns (uint256)']; // ABI for balanceOf function
             const rwdContract = new ethers.Contract(rwdContractAddress, rwdContractAbi, provider);
 
@@ -82,6 +87,40 @@ function Home({ account, setAccount }) {
             console.error('Error fetching RWD balance:', error);
         }
     };
+
+    const initEthers = async () => {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+
+        const contract = new ethers.Contract(UploadAddress, Upload.abi, signer);
+        setContract(contract);
+      };
+
+      const LoginUserEnd = async (date, month, year, gender) => {
+        try {
+          if (!contract) {
+            await initEthers();
+          }
+          const tx = await contract.login(date, month, year, gender);
+          await tx.wait();
+          console.log("User logged in:", tx);
+        } catch (error) {
+          console.error("Error logging in user:", error);
+        }
+      };
+    
+      const UploadDataLast = async (bmi) => {
+        try {
+          if (!contract) {
+            await initEthers();
+          }
+          const tx = await contract.recordBMI(bmi);
+          await tx.wait();
+          console.log("BMI uploaded:", tx);
+        } catch (error) {
+          console.error("Error uploading BMI:", error);
+        }
+      };
 
     return (
         <section className='Home'>
@@ -170,6 +209,8 @@ function Home({ account, setAccount }) {
                         <div className="bmi-content">
                             <h1>BMI</h1>
                             <p>Your BMI is 24.5. You are in the normal range.</p>
+                            <button onClick={() => LoginUserEnd(1, 1, 2000, 'male')}>Login User</button>
+                            <button onClick={() => UploadDataLast(23000)}>Upload BMI</button>
                         </div>
                     )}
                     {activeSection === 'rwd' && (

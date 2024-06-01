@@ -18,7 +18,7 @@ function Trading() {
         try {
             // Connect to Ethereum provider
             const provider = new ethers.providers.Web3Provider(window.ethereum);
-            const contractAddress = '0xFb7865EA41c4F5deeAeCe43335dA565a614CC035'; // Contract address
+            const contractAddress = '0x26Db3ce9F9F7EF95ae69627716DFFb45F4E5e48D'; // Contract address
             const contract = new ethers.Contract(contractAddress, CompanyNFT.abi, provider);
 
             // Fetch NFT count
@@ -46,24 +46,29 @@ function Trading() {
     const buyNftClick = async (tokenId, price) => {
         try {
             // Connect to Ethereum provider
+            console.log(tokenId);
+            console.log(price);
+
             const provider = new ethers.providers.Web3Provider(window.ethereum);
             const signer = provider.getSigner();
-            const contractAddress = '0xe1556Df686803B2940bAb329c605d2bFBef4beBD'; // Contract address
+            const contractAddress = '0x039B628985c9402474953937FBb03bb9F300e0c6'; // Contract address
             const contract = new ethers.Contract(contractAddress, Trade.abi, signer);
-            const rewardTokenAddress = '0xd9106767D46F2A6982a6f67D679Cb65dBc215dB1'; // Replace with actual reward token address
+            const rewardTokenAddress = '0xC0Eba18cd79Ba65be8AFeb6ac5A5dDECE9723c39'; // Replace with actual reward token address
             const rewardToken = new ethers.Contract(rewardTokenAddress, RWD.abi, signer); // Replace with actual reward token ABI
     
             // Check user's reward token balance
             const userAddress = await signer.getAddress();
             const balance = await rewardToken.balanceOf(userAddress);
-            const formattedPrice = ethers.utils.parseUnits(price.toString(), 'ether');
+            
+            // const formattedPrice = ethers.utils.parseUnits(price.toString(), 'ether');
+            // console.log(formattedPrice);
     
             
     
             
     
             // Call the buyNFT function from the smart contract
-            const tx = await contract.buyNFT(tokenId, formattedPrice);
+            const tx = await contract.buyNFT(tokenId, '1000000000000000000');
             
             // Wait for the transaction to be mined
             await tx.wait();

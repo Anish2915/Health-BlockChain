@@ -4,7 +4,7 @@ pragma solidity >=0.8.19 <0.9.0;
 contract RWD{
     string public name = 'Reward token';
     string public symbol = 'RWD';
-    uint256 public totalSupply = 1000000000000000000000000 ; // one million tokens , because 1 token = 10^18 unit
+    uint256 public totalSupply = 100000000000000000000000 ; // one million tokens , because 1 token = 10^18 unit
     uint public decimals = 18;
 
     event Transfer(
@@ -19,6 +19,8 @@ contract RWD{
         uint256 value
     );
 
+    event RevertOccurred(address sender, uint256 balance, uint256 value);
+
     mapping (address => uint256) public balanceOf;
     mapping (address => mapping (address => uint256)) public allowance;
 
@@ -27,7 +29,12 @@ contract RWD{
     } 
 
     function transfer(address _to, uint256 _value) external returns (bool success){
-        require(balanceOf[msg.sender] >= _value);
+        //require(balanceOf[msg.sender] >= _value, 'something ssad');
+        if(balanceOf[msg.sender] < _value){
+            emit RevertOccurred(msg.sender, balanceOf[msg.sender], _value);
+            revert();
+        }
+        
         balanceOf[msg.sender] = balanceOf[msg.sender] - _value;
         balanceOf[_to] = balanceOf[_to] + _value;
         emit Transfer(msg.sender,_to,_value);
@@ -41,8 +48,8 @@ contract RWD{
     }
 
     function transferFrom(address _from , address _to , uint256 _value) external returns (bool success){
-        require(_value >= balanceOf[_from]);
-        require(_value >= allowance[_from][msg.sender]);
+        require(_value >= balanceOf[_from],'second revert');
+        //require(_value >= allowance[_from][msg.sender]);
         balanceOf[_to] += _value;
         balanceOf[_from] -= _value;
         allowance[msg.sender][_from] -= _value;

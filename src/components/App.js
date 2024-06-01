@@ -1,7 +1,7 @@
 import React , {Component} from 'react';
 import './App.css';
-import Web3 from 'web3';
-import Tether from '../truffle_abis/Tether.json'
+// import Web3 from 'web3';
+// import Tether from '../truffle_abis/Tether.json'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 // Importing pages and components
@@ -10,6 +10,7 @@ import Home from './pages/Home';
 import Trade from './pages/Trade';
 import CrossChain from './pages/CrossChain';
 import Company from './pages/Company';
+import Footer from './comp/Footer';
 
 class App extends Component{
 
@@ -78,11 +79,12 @@ class App extends Component{
                 <BrowserRouter>
                     <NavbarUser account={this.state.account} setAccount={this.setAccount} />
                     <Routes>
-                        <Route path='/' element={<Home />}/>
-                        <Route path='/trade' element={<Trade props={this.props}/>} />
+                        <Route path='/' element={<Home account={this.state.account} setAccount={this.setAccount} />}/>
+                        <Route path='/trade' element={<Trade props={this.props} account={this.state.account} />} />
                         <Route path='/cross-chain' element={<CrossChain />} />
                         <Route path='/company' element={<Company />} />
                     </Routes>
+                    <Footer />
                 </BrowserRouter>
             </div>
         )

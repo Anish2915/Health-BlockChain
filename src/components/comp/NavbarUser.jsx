@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { IoIosSearch } from "react-icons/io";
 import detectEthereumProvider from '@metamask/detect-provider';
 
@@ -8,6 +8,7 @@ import '../styles/NavbarUser.css';
 
 function NavbarUser({ account, setAccount }) {
     const [search, setSearch] = useState('');
+    const location = useLocation();
 
     useEffect(() => {
         const handleAccountsChanged = async (accounts) => {
@@ -61,6 +62,15 @@ function NavbarUser({ account, setAccount }) {
         }
     }
 
+    const findActiveLink = (path) => {
+        const currentPath = location.pathname.toString();
+        if (path === currentPath) {
+            return 'activeLink';
+        } else {
+            return '';
+        }
+    }
+
     return (
         <header className='NavbarUser'>
             <nav>
@@ -68,10 +78,10 @@ function NavbarUser({ account, setAccount }) {
                     <img src="./healthLogo.png" alt="Logo" />
                 </div>
                 <ul>
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="/trade">Trade</Link></li>
-                    <li><Link to="/cross-chain">Change Chain</Link></li>
-                    <li><Link to='/company'>Deploy NFTs</Link></li>
+                    <li><Link to="/" className={findActiveLink('/')}>Home</Link></li>
+                    <li><Link to="/trade" className={findActiveLink('/trade')}>Trade</Link></li>
+                    <li><Link to="/cross-chain" className={findActiveLink('/cross-chain')}>Change Chain</Link></li>
+                    <li><Link to='/company' className={findActiveLink('/company')}>Deploy NFTs</Link></li>
                 </ul>
             </nav>
             <div className='right-on-nav'>

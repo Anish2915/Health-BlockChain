@@ -34,7 +34,8 @@ function Company() {
     };
 
     return (
-        <section>
+        
+        <section  style={{ marginTop: '100px' }}> 
             <button onClick={handleDeployNft}>Deploy</button>
             {selfNft.length > 0 ? (
                 <div>

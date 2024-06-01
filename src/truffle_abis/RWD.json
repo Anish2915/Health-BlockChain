@@ -10471,12 +10471,12 @@
         }
       },
       "links": {},
-      "address": "0x3eE8faB357A37605cfe9D8B29201D01d8f10d9ab",
-      "transactionHash": "0x094b96d21e1a8bc4b0f340ed7310a7450fd2265245ee5cf0203c518ce41eb736"
+      "address": "0x3AD56B29f3f2b9BF0912cD821121874b1fec7255",
+      "transactionHash": "0x9e35bd9db1b2542545e777c0f61c041eae0ea1fe1b4aae168671249048943244"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2024-05-31T18:19:30.765Z",
+  "updatedAt": "2024-06-01T07:39:03.625Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

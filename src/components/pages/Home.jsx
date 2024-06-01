@@ -1,7 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef ,useEffect } from 'react';
 import { BsEmojiLaughingFill } from "react-icons/bs";
 import { FaCalendarAlt, FaShoppingBag, FaChartLine } from 'react-icons/fa';
 import detectEthereumProvider from '@metamask/detect-provider';
+import { ethers } from 'ethers';
 
 // Importing styles
 import '../styles/Home.css';
@@ -60,6 +61,28 @@ function Home({ account, setAccount }) {
         formData.append('doc', docToJudge);
     }
 
+    const [rwdBalance, setRwdBalance] = useState(0);
+
+    useEffect(() => {
+        if (account !== '0x0') {
+            fetchRwdBalance(); // Fetch RWD balance when the account changes
+        }
+    }, [account]); // Dependency array to watch for changes in account
+
+    const fetchRwdBalance = async () => {
+        try {
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            const rwdContractAddress = '0x3AD56B29f3f2b9BF0912cD821121874b1fec7255'; // Replace with actual RWD token contract address
+            const rwdContractAbi = ['function balanceOf(address) view returns (uint256)']; // ABI for balanceOf function
+            const rwdContract = new ethers.Contract(rwdContractAddress, rwdContractAbi, provider);
+
+            const balance = await rwdContract.balanceOf(account);
+            setRwdBalance(ethers.utils.formatUnits(balance, 'ether'));
+        } catch (error) {
+            console.error('Error fetching RWD balance:', error);
+        }
+    };
+
     return (
         <section className='Home'>
             <form onSubmit={handleFormSubmit}>
@@ -112,7 +135,7 @@ function Home({ account, setAccount }) {
                         className='card'
                     />
                     <Card
-                        title={`RWD: ${0.5}`}                                                                     // To be changed
+                        title={`RWD: ${rwdBalance}`}                                                                    // To be changed
                         cardImg="./RWDtoken.png"
                         cardText={`${"Your current balance of RWD is 0.5. Be healthier to earn more rewards."}`}  // To be changed
                         className='card'

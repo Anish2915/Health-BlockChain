@@ -93,8 +93,8 @@ class App extends Component{
         return (
             <div className='text-center'>
                 <h>{this.state.account}</h>
-                <h1>{window.web3.utils.fromWei(this.state.tetherBalance,'Ether')}</h1>
-                <h2>{window.web3.utils.fromWei(this.state.rwdBalance,'Ether')}</h2>
+                {/* <h1>{window.web3.utils.fromWei(this.state.tetherBalance,'Ether')}</h1>
+                <h2>{window.web3.utils.fromWei(this.state.rwdBalance,'Ether')}</h2> */}
                 <BrowserRouter>
                     <NavbarUser account={this.state.account} setAccount={this.setAccount} />
                     <Routes>

@@ -5,13 +5,15 @@ import { ethers } from 'ethers';
 // Importing styles
 import '../styles/Trade.css';
 import CompanyNFT from '../../truffle_abis/CompanyNFT.json';
+import Trade from '../../truffle_abis/Trade.json'
+import RWD from '../../truffle_abis/RWD.json'
 
-function Trade() {
+function Trading() {
     const [buyNft, setBuyNft] = useState([]);
     const [sellNft, setSellNft] = useState([]);
     const [activeTab, setActiveTab] = useState('buy');
 
-    const fetchBuyNfts = async () => {
+    const fetchBuyNft = async () => {
         setActiveTab('buy');
         try {
             // Connect to Ethereum provider
@@ -35,8 +37,40 @@ function Trade() {
             }
 
             console.log(nftList);
+            setBuyNft(nftList);
         } catch (error) {
             console.error('Error fetching NFTs:', error);
+        }
+    };
+
+    const buyNftClick = async (tokenId, price) => {
+        try {
+            // Connect to Ethereum provider
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            const signer = provider.getSigner();
+            const contractAddress = '0xe1556Df686803B2940bAb329c605d2bFBef4beBD'; // Contract address
+            const contract = new ethers.Contract(contractAddress, Trade.abi, signer);
+            const rewardTokenAddress = '0xd9106767D46F2A6982a6f67D679Cb65dBc215dB1'; // Replace with actual reward token address
+            const rewardToken = new ethers.Contract(rewardTokenAddress, RWD.abi, signer); // Replace with actual reward token ABI
+    
+            // Check user's reward token balance
+            const userAddress = await signer.getAddress();
+            const balance = await rewardToken.balanceOf(userAddress);
+            const formattedPrice = ethers.utils.parseUnits(price.toString(), 'ether');
+    
+            
+    
+            
+    
+            // Call the buyNFT function from the smart contract
+            const tx = await contract.buyNFT(tokenId, formattedPrice);
+            
+            // Wait for the transaction to be mined
+            await tx.wait();
+    
+            console.log('NFT purchased successfully', tx);
+        } catch (error) {
+            console.error('Error purchasing NFT:', error);
         }
     };
 
@@ -60,16 +94,19 @@ function Trade() {
                     <li onClick={fetchSellNft} className={activeLink('sell')}>Sell NFT</li>
                 </ul>
             </nav>
-            {account !== '0x0' ? (activeTab === 'buy' ? (
+            {true ? (activeTab === 'buy' ? (
                 buyNft.length > 0 ? (
                     <div>
                         {buyNft.map((item, index) => (
+                            <div>
                             <Link key={index} to={`/nft/${item.name}`}>
                                 <img src={item.image} alt={item.name} />
                                 <h3>{item.name}</h3>
                                 <p>{item.description}</p>
                                 <p>{item.price}</p>
                             </Link>
+                            <button onClick={() => buyNftClick(item.tokenId, item.price)}>Buy NFT</button>
+                            </div>
                         ))}
                     </div>
                 ) : (
@@ -97,4 +134,4 @@ function Trade() {
     )
 }
 
-export default Trade;
+export default Trading;

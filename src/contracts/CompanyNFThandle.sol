@@ -64,6 +64,7 @@ contract CompanyNFT is ERC721 {
         nfts[tokenId].popularityIndex++;
         emit ImpressionIncreased(companyAddress, tokenId);
     }
+    
     function updateNFTStatus(uint256 tokenId, bool isOwned) external {
     require(msg.sender == tradeContract, "Unauthorized");
     nfts[tokenId].isOwned = isOwned;

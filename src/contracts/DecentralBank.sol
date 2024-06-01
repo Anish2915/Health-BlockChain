@@ -17,7 +17,7 @@ contract DecentralBank {
     mapping(address => bool) public hasStacked;
     mapping(address => bool) public isStacked;
 
-    constructor(RWD _rwd,Tether _tether) public{
+    constructor(RWD _rwd,Tether _tether) {
         rwd = _rwd;
         tether = _tether;
         owner = msg.sender;

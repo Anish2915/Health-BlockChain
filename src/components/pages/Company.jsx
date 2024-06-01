@@ -7,6 +7,34 @@ import CompanyNFT from '../../truffle_abis/CompanyNFT.json';
 
 function Company() {
     const [selfNft, setSelfNft] = useState([]);
+    const [companyName, setCompanyName] = useState('');
+
+    const handleRegister = async () => {
+        try {
+            if (!window.ethereum) {
+                alert('MetaMask is not installed!');
+                return;
+            }
+            setCompanyName("testComp");
+
+            await window.ethereum.request({ method: 'eth_requestAccounts' });
+
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            const signer = provider.getSigner();
+
+            const contractAddress = '0x0836c013763A153814B62FCBcCabd4f2781F7d94';
+
+            const contract = new ethers.Contract(contractAddress, CompanyNFT.abi, signer);
+
+            const transaction = await contract.registerCompany(companyName);
+
+            await transaction.wait();
+
+            console.log('registed successful', transaction);
+        } catch (error) {
+            console.error('Error registering:', error);
+        }
+    }
 
     const handleDeployNft = async () => {
         try {
@@ -19,11 +47,11 @@ function Company() {
             const provider = new ethers.providers.Web3Provider(window.ethereum);
             const signer = provider.getSigner();
 
-            const contractAddress = '0xFb7865EA41c4F5deeAeCe43335dA565a614CC035';
+            const contractAddress = '0x0836c013763A153814B62FCBcCabd4f2781F7d94';
 
             const contract = new ethers.Contract(contractAddress, CompanyNFT.abi, signer);
 
-            const transaction = await contract.releaseNFT('NFT Name', 10, ethers.utils.parseEther('0.1'));
+            const transaction = await contract.releaseNFT('NFT Name', 10);
 
             await transaction.wait();
 
@@ -36,6 +64,7 @@ function Company() {
     return (
         
         <section  style={{ marginTop: '100px' }}> 
+            <button onClick={handleRegister}>Register</button>
             <button onClick={handleDeployNft}>Deploy</button>
             {selfNft.length > 0 ? (
                 <div>

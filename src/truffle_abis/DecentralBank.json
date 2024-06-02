@@ -3961,7 +3961,7 @@
                 }
               ]
             },
-            "name": "cleanup_t_contract$_RWD_$5440",
+            "name": "cleanup_t_contract$_RWD_$5452",
             "nativeSrc": "5795:108:39",
             "nodeType": "YulFunctionDefinition",
             "parameters": [
@@ -4052,7 +4052,7 @@
                               }
                             ],
                             "functionName": {
-                              "name": "cleanup_t_contract$_RWD_$5440",
+                              "name": "cleanup_t_contract$_RWD_$5452",
                               "nativeSrc": "5994:29:39",
                               "nodeType": "YulIdentifier",
                               "src": "5994:29:39"
@@ -4089,7 +4089,7 @@
                 }
               ]
             },
-            "name": "validator_revert_t_contract$_RWD_$5440",
+            "name": "validator_revert_t_contract$_RWD_$5452",
             "nativeSrc": "5909:146:39",
             "nodeType": "YulFunctionDefinition",
             "parameters": [
@@ -4152,7 +4152,7 @@
                       }
                     ],
                     "functionName": {
-                      "name": "validator_revert_t_contract$_RWD_$5440",
+                      "name": "validator_revert_t_contract$_RWD_$5452",
                       "nativeSrc": "6177:38:39",
                       "nodeType": "YulIdentifier",
                       "src": "6177:38:39"
@@ -4167,7 +4167,7 @@
                 }
               ]
             },
-            "name": "abi_decode_t_contract$_RWD_$5440_fromMemory",
+            "name": "abi_decode_t_contract$_RWD_$5452_fromMemory",
             "nativeSrc": "6061:167:39",
             "nodeType": "YulFunctionDefinition",
             "parameters": [
@@ -4237,7 +4237,7 @@
                 }
               ]
             },
-            "name": "cleanup_t_contract$_Tether_$5628",
+            "name": "cleanup_t_contract$_Tether_$5640",
             "nativeSrc": "6234:111:39",
             "nodeType": "YulFunctionDefinition",
             "parameters": [
@@ -4328,7 +4328,7 @@
                               }
                             ],
                             "functionName": {
-                              "name": "cleanup_t_contract$_Tether_$5628",
+                              "name": "cleanup_t_contract$_Tether_$5640",
                               "nativeSrc": "6439:32:39",
                               "nodeType": "YulIdentifier",
                               "src": "6439:32:39"
@@ -4365,7 +4365,7 @@
                 }
               ]
             },
-            "name": "validator_revert_t_contract$_Tether_$5628",
+            "name": "validator_revert_t_contract$_Tether_$5640",
             "nativeSrc": "6351:152:39",
             "nodeType": "YulFunctionDefinition",
             "parameters": [
@@ -4428,7 +4428,7 @@
                       }
                     ],
                     "functionName": {
-                      "name": "validator_revert_t_contract$_Tether_$5628",
+                      "name": "validator_revert_t_contract$_Tether_$5640",
                       "nativeSrc": "6628:41:39",
                       "nodeType": "YulIdentifier",
                       "src": "6628:41:39"
@@ -4443,7 +4443,7 @@
                 }
               ]
             },
-            "name": "abi_decode_t_contract$_Tether_$5628_fromMemory",
+            "name": "abi_decode_t_contract$_Tether_$5640_fromMemory",
             "nativeSrc": "6509:173:39",
             "nodeType": "YulFunctionDefinition",
             "parameters": [
@@ -4620,7 +4620,7 @@
                           }
                         ],
                         "functionName": {
-                          "name": "abi_decode_t_contract$_RWD_$5440_fromMemory",
+                          "name": "abi_decode_t_contract$_RWD_$5452_fromMemory",
                           "nativeSrc": "7002:43:39",
                           "nodeType": "YulIdentifier",
                           "src": "7002:43:39"
@@ -4706,7 +4706,7 @@
                           }
                         ],
                         "functionName": {
-                          "name": "abi_decode_t_contract$_Tether_$5628_fromMemory",
+                          "name": "abi_decode_t_contract$_Tether_$5640_fromMemory",
                           "nativeSrc": "7153:46:39",
                           "nodeType": "YulIdentifier",
                           "src": "7153:46:39"
@@ -4728,7 +4728,7 @@
                 }
               ]
             },
-            "name": "abi_decode_tuple_t_contract$_RWD_$5440t_contract$_Tether_$5628_fromMemory",
+            "name": "abi_decode_tuple_t_contract$_RWD_$5452t_contract$_Tether_$5640_fromMemory",
             "nativeSrc": "6688:561:39",
             "nodeType": "YulFunctionDefinition",
             "parameters": [
@@ -4767,7 +4767,7 @@
           }
         ]
       },
-      "contents": "{\n\n    function array_length_t_string_memory_ptr(value) -> length {\n\n        length := mload(value)\n\n    }\n\n    function panic_error_0x41() {\n        mstore(0, 35408467139433450592217433187231851964531694900788300625387963629091585785856)\n        mstore(4, 0x41)\n        revert(0, 0x24)\n    }\n\n    function panic_error_0x22() {\n        mstore(0, 35408467139433450592217433187231851964531694900788300625387963629091585785856)\n        mstore(4, 0x22)\n        revert(0, 0x24)\n    }\n\n    function extract_byte_array_length(data) -> length {\n        length := div(data, 2)\n        let outOfPlaceEncoding := and(data, 1)\n        if iszero(outOfPlaceEncoding) {\n            length := and(length, 0x7f)\n        }\n\n        if eq(outOfPlaceEncoding, lt(length, 32)) {\n            panic_error_0x22()\n        }\n    }\n\n    function array_dataslot_t_string_storage(ptr) -> data {\n        data := ptr\n\n        mstore(0, ptr)\n        data := keccak256(0, 0x20)\n\n    }\n\n    function divide_by_32_ceil(value) -> result {\n        result := div(add(value, 31), 32)\n    }\n\n    function shift_left_dynamic(bits, value) -> newValue {\n        newValue :=\n\n        shl(bits, value)\n\n    }\n\n    function update_byte_slice_dynamic32(value, shiftBytes, toInsert) -> result {\n        let shiftBits := mul(shiftBytes, 8)\n        let mask := shift_left_dynamic(shiftBits, 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff)\n        toInsert := shift_left_dynamic(shiftBits, toInsert)\n        value := and(value, not(mask))\n        result := or(value, and(toInsert, mask))\n    }\n\n    function cleanup_t_uint256(value) -> cleaned {\n        cleaned := value\n    }\n\n    function identity(value) -> ret {\n        ret := value\n    }\n\n    function convert_t_uint256_to_t_uint256(value) -> converted {\n        converted := cleanup_t_uint256(identity(cleanup_t_uint256(value)))\n    }\n\n    function prepare_store_t_uint256(value) -> ret {\n        ret := value\n    }\n\n    function update_storage_value_t_uint256_to_t_uint256(slot, offset, value_0) {\n        let convertedValue_0 := convert_t_uint256_to_t_uint256(value_0)\n        sstore(slot, update_byte_slice_dynamic32(sload(slot), offset, prepare_store_t_uint256(convertedValue_0)))\n    }\n\n    function zero_value_for_split_t_uint256() -> ret {\n        ret := 0\n    }\n\n    function storage_set_to_zero_t_uint256(slot, offset) {\n        let zero_0 := zero_value_for_split_t_uint256()\n        update_storage_value_t_uint256_to_t_uint256(slot, offset, zero_0)\n    }\n\n    function clear_storage_range_t_bytes1(start, end) {\n        for {} lt(start, end) { start := add(start, 1) }\n        {\n            storage_set_to_zero_t_uint256(start, 0)\n        }\n    }\n\n    function clean_up_bytearray_end_slots_t_string_storage(array, len, startIndex) {\n\n        if gt(len, 31) {\n            let dataArea := array_dataslot_t_string_storage(array)\n            let deleteStart := add(dataArea, divide_by_32_ceil(startIndex))\n            // If we are clearing array to be short byte array, we want to clear only data starting from array data area.\n            if lt(startIndex, 32) { deleteStart := dataArea }\n            clear_storage_range_t_bytes1(deleteStart, add(dataArea, divide_by_32_ceil(len)))\n        }\n\n    }\n\n    function shift_right_unsigned_dynamic(bits, value) -> newValue {\n        newValue :=\n\n        shr(bits, value)\n\n    }\n\n    function mask_bytes_dynamic(data, bytes) -> result {\n        let mask := not(shift_right_unsigned_dynamic(mul(8, bytes), not(0)))\n        result := and(data, mask)\n    }\n    function extract_used_part_and_set_length_of_short_byte_array(data, len) -> used {\n        // we want to save only elements that are part of the array after resizing\n        // others should be set to zero\n        data := mask_bytes_dynamic(data, len)\n        used := or(data, mul(2, len))\n    }\n    function copy_byte_array_to_storage_from_t_string_memory_ptr_to_t_string_storage(slot, src) {\n\n        let newLen := array_length_t_string_memory_ptr(src)\n        // Make sure array length is sane\n        if gt(newLen, 0xffffffffffffffff) { panic_error_0x41() }\n\n        let oldLen := extract_byte_array_length(sload(slot))\n\n        // potentially truncate data\n        clean_up_bytearray_end_slots_t_string_storage(slot, oldLen, newLen)\n\n        let srcOffset := 0\n\n        srcOffset := 0x20\n\n        switch gt(newLen, 31)\n        case 1 {\n            let loopEnd := and(newLen, not(0x1f))\n\n            let dstPtr := array_dataslot_t_string_storage(slot)\n            let i := 0\n            for { } lt(i, loopEnd) { i := add(i, 0x20) } {\n                sstore(dstPtr, mload(add(src, srcOffset)))\n                dstPtr := add(dstPtr, 1)\n                srcOffset := add(srcOffset, 32)\n            }\n            if lt(loopEnd, newLen) {\n                let lastValue := mload(add(src, srcOffset))\n                sstore(dstPtr, mask_bytes_dynamic(lastValue, and(newLen, 0x1f)))\n            }\n            sstore(slot, add(mul(newLen, 2), 1))\n        }\n        default {\n            let value := 0\n            if newLen {\n                value := mload(add(src, srcOffset))\n            }\n            sstore(slot, extract_used_part_and_set_length_of_short_byte_array(value, newLen))\n        }\n    }\n\n    function allocate_unbounded() -> memPtr {\n        memPtr := mload(64)\n    }\n\n    function revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() {\n        revert(0, 0)\n    }\n\n    function revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() {\n        revert(0, 0)\n    }\n\n    function cleanup_t_uint160(value) -> cleaned {\n        cleaned := and(value, 0xffffffffffffffffffffffffffffffffffffffff)\n    }\n\n    function cleanup_t_address(value) -> cleaned {\n        cleaned := cleanup_t_uint160(value)\n    }\n\n    function cleanup_t_contract$_RWD_$5440(value) -> cleaned {\n        cleaned := cleanup_t_address(value)\n    }\n\n    function validator_revert_t_contract$_RWD_$5440(value) {\n        if iszero(eq(value, cleanup_t_contract$_RWD_$5440(value))) { revert(0, 0) }\n    }\n\n    function abi_decode_t_contract$_RWD_$5440_fromMemory(offset, end) -> value {\n        value := mload(offset)\n        validator_revert_t_contract$_RWD_$5440(value)\n    }\n\n    function cleanup_t_contract$_Tether_$5628(value) -> cleaned {\n        cleaned := cleanup_t_address(value)\n    }\n\n    function validator_revert_t_contract$_Tether_$5628(value) {\n        if iszero(eq(value, cleanup_t_contract$_Tether_$5628(value))) { revert(0, 0) }\n    }\n\n    function abi_decode_t_contract$_Tether_$5628_fromMemory(offset, end) -> value {\n        value := mload(offset)\n        validator_revert_t_contract$_Tether_$5628(value)\n    }\n\n    function abi_decode_tuple_t_contract$_RWD_$5440t_contract$_Tether_$5628_fromMemory(headStart, dataEnd) -> value0, value1 {\n        if slt(sub(dataEnd, headStart), 64) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_contract$_RWD_$5440_fromMemory(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 32\n\n            value1 := abi_decode_t_contract$_Tether_$5628_fromMemory(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n}\n",
+      "contents": "{\n\n    function array_length_t_string_memory_ptr(value) -> length {\n\n        length := mload(value)\n\n    }\n\n    function panic_error_0x41() {\n        mstore(0, 35408467139433450592217433187231851964531694900788300625387963629091585785856)\n        mstore(4, 0x41)\n        revert(0, 0x24)\n    }\n\n    function panic_error_0x22() {\n        mstore(0, 35408467139433450592217433187231851964531694900788300625387963629091585785856)\n        mstore(4, 0x22)\n        revert(0, 0x24)\n    }\n\n    function extract_byte_array_length(data) -> length {\n        length := div(data, 2)\n        let outOfPlaceEncoding := and(data, 1)\n        if iszero(outOfPlaceEncoding) {\n            length := and(length, 0x7f)\n        }\n\n        if eq(outOfPlaceEncoding, lt(length, 32)) {\n            panic_error_0x22()\n        }\n    }\n\n    function array_dataslot_t_string_storage(ptr) -> data {\n        data := ptr\n\n        mstore(0, ptr)\n        data := keccak256(0, 0x20)\n\n    }\n\n    function divide_by_32_ceil(value) -> result {\n        result := div(add(value, 31), 32)\n    }\n\n    function shift_left_dynamic(bits, value) -> newValue {\n        newValue :=\n\n        shl(bits, value)\n\n    }\n\n    function update_byte_slice_dynamic32(value, shiftBytes, toInsert) -> result {\n        let shiftBits := mul(shiftBytes, 8)\n        let mask := shift_left_dynamic(shiftBits, 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff)\n        toInsert := shift_left_dynamic(shiftBits, toInsert)\n        value := and(value, not(mask))\n        result := or(value, and(toInsert, mask))\n    }\n\n    function cleanup_t_uint256(value) -> cleaned {\n        cleaned := value\n    }\n\n    function identity(value) -> ret {\n        ret := value\n    }\n\n    function convert_t_uint256_to_t_uint256(value) -> converted {\n        converted := cleanup_t_uint256(identity(cleanup_t_uint256(value)))\n    }\n\n    function prepare_store_t_uint256(value) -> ret {\n        ret := value\n    }\n\n    function update_storage_value_t_uint256_to_t_uint256(slot, offset, value_0) {\n        let convertedValue_0 := convert_t_uint256_to_t_uint256(value_0)\n        sstore(slot, update_byte_slice_dynamic32(sload(slot), offset, prepare_store_t_uint256(convertedValue_0)))\n    }\n\n    function zero_value_for_split_t_uint256() -> ret {\n        ret := 0\n    }\n\n    function storage_set_to_zero_t_uint256(slot, offset) {\n        let zero_0 := zero_value_for_split_t_uint256()\n        update_storage_value_t_uint256_to_t_uint256(slot, offset, zero_0)\n    }\n\n    function clear_storage_range_t_bytes1(start, end) {\n        for {} lt(start, end) { start := add(start, 1) }\n        {\n            storage_set_to_zero_t_uint256(start, 0)\n        }\n    }\n\n    function clean_up_bytearray_end_slots_t_string_storage(array, len, startIndex) {\n\n        if gt(len, 31) {\n            let dataArea := array_dataslot_t_string_storage(array)\n            let deleteStart := add(dataArea, divide_by_32_ceil(startIndex))\n            // If we are clearing array to be short byte array, we want to clear only data starting from array data area.\n            if lt(startIndex, 32) { deleteStart := dataArea }\n            clear_storage_range_t_bytes1(deleteStart, add(dataArea, divide_by_32_ceil(len)))\n        }\n\n    }\n\n    function shift_right_unsigned_dynamic(bits, value) -> newValue {\n        newValue :=\n\n        shr(bits, value)\n\n    }\n\n    function mask_bytes_dynamic(data, bytes) -> result {\n        let mask := not(shift_right_unsigned_dynamic(mul(8, bytes), not(0)))\n        result := and(data, mask)\n    }\n    function extract_used_part_and_set_length_of_short_byte_array(data, len) -> used {\n        // we want to save only elements that are part of the array after resizing\n        // others should be set to zero\n        data := mask_bytes_dynamic(data, len)\n        used := or(data, mul(2, len))\n    }\n    function copy_byte_array_to_storage_from_t_string_memory_ptr_to_t_string_storage(slot, src) {\n\n        let newLen := array_length_t_string_memory_ptr(src)\n        // Make sure array length is sane\n        if gt(newLen, 0xffffffffffffffff) { panic_error_0x41() }\n\n        let oldLen := extract_byte_array_length(sload(slot))\n\n        // potentially truncate data\n        clean_up_bytearray_end_slots_t_string_storage(slot, oldLen, newLen)\n\n        let srcOffset := 0\n\n        srcOffset := 0x20\n\n        switch gt(newLen, 31)\n        case 1 {\n            let loopEnd := and(newLen, not(0x1f))\n\n            let dstPtr := array_dataslot_t_string_storage(slot)\n            let i := 0\n            for { } lt(i, loopEnd) { i := add(i, 0x20) } {\n                sstore(dstPtr, mload(add(src, srcOffset)))\n                dstPtr := add(dstPtr, 1)\n                srcOffset := add(srcOffset, 32)\n            }\n            if lt(loopEnd, newLen) {\n                let lastValue := mload(add(src, srcOffset))\n                sstore(dstPtr, mask_bytes_dynamic(lastValue, and(newLen, 0x1f)))\n            }\n            sstore(slot, add(mul(newLen, 2), 1))\n        }\n        default {\n            let value := 0\n            if newLen {\n                value := mload(add(src, srcOffset))\n            }\n            sstore(slot, extract_used_part_and_set_length_of_short_byte_array(value, newLen))\n        }\n    }\n\n    function allocate_unbounded() -> memPtr {\n        memPtr := mload(64)\n    }\n\n    function revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() {\n        revert(0, 0)\n    }\n\n    function revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() {\n        revert(0, 0)\n    }\n\n    function cleanup_t_uint160(value) -> cleaned {\n        cleaned := and(value, 0xffffffffffffffffffffffffffffffffffffffff)\n    }\n\n    function cleanup_t_address(value) -> cleaned {\n        cleaned := cleanup_t_uint160(value)\n    }\n\n    function cleanup_t_contract$_RWD_$5452(value) -> cleaned {\n        cleaned := cleanup_t_address(value)\n    }\n\n    function validator_revert_t_contract$_RWD_$5452(value) {\n        if iszero(eq(value, cleanup_t_contract$_RWD_$5452(value))) { revert(0, 0) }\n    }\n\n    function abi_decode_t_contract$_RWD_$5452_fromMemory(offset, end) -> value {\n        value := mload(offset)\n        validator_revert_t_contract$_RWD_$5452(value)\n    }\n\n    function cleanup_t_contract$_Tether_$5640(value) -> cleaned {\n        cleaned := cleanup_t_address(value)\n    }\n\n    function validator_revert_t_contract$_Tether_$5640(value) {\n        if iszero(eq(value, cleanup_t_contract$_Tether_$5640(value))) { revert(0, 0) }\n    }\n\n    function abi_decode_t_contract$_Tether_$5640_fromMemory(offset, end) -> value {\n        value := mload(offset)\n        validator_revert_t_contract$_Tether_$5640(value)\n    }\n\n    function abi_decode_tuple_t_contract$_RWD_$5452t_contract$_Tether_$5640_fromMemory(headStart, dataEnd) -> value0, value1 {\n        if slt(sub(dataEnd, headStart), 64) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_contract$_RWD_$5452_fromMemory(add(headStart, offset), dataEnd)\n        }\n\n        {\n\n            let offset := 32\n\n            value1 := abi_decode_t_contract$_Tether_$5640_fromMemory(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n}\n",
       "id": 39,
       "language": "Yul",
       "name": "#utility.yul"
@@ -6052,7 +6052,7 @@
                 }
               ]
             },
-            "name": "convert_t_contract$_RWD_$5440_to_t_address",
+            "name": "convert_t_contract$_RWD_$5452_to_t_address",
             "nativeSrc": "1829:138:39",
             "nodeType": "YulFunctionDefinition",
             "parameters": [
@@ -6100,7 +6100,7 @@
                           }
                         ],
                         "functionName": {
-                          "name": "convert_t_contract$_RWD_$5440_to_t_address",
+                          "name": "convert_t_contract$_RWD_$5452_to_t_address",
                           "nativeSrc": "2072:42:39",
                           "nodeType": "YulIdentifier",
                           "src": "2072:42:39"
@@ -6126,7 +6126,7 @@
                 }
               ]
             },
-            "name": "abi_encode_t_contract$_RWD_$5440_to_t_address_fromStack",
+            "name": "abi_encode_t_contract$_RWD_$5452_to_t_address_fromStack",
             "nativeSrc": "1973:155:39",
             "nodeType": "YulFunctionDefinition",
             "parameters": [
@@ -6231,7 +6231,7 @@
                       }
                     ],
                     "functionName": {
-                      "name": "abi_encode_t_contract$_RWD_$5440_to_t_address_fromStack",
+                      "name": "abi_encode_t_contract$_RWD_$5452_to_t_address_fromStack",
                       "nativeSrc": "2290:55:39",
                       "nodeType": "YulIdentifier",
                       "src": "2290:55:39"
@@ -6246,7 +6246,7 @@
                 }
               ]
             },
-            "name": "abi_encode_tuple_t_contract$_RWD_$5440__to_t_address__fromStack_reversed",
+            "name": "abi_encode_tuple_t_contract$_RWD_$5452__to_t_address__fromStack_reversed",
             "nativeSrc": "2134:246:39",
             "nodeType": "YulFunctionDefinition",
             "parameters": [
@@ -7469,7 +7469,7 @@
                 }
               ]
             },
-            "name": "convert_t_contract$_Tether_$5628_to_t_address",
+            "name": "convert_t_contract$_Tether_$5640_to_t_address",
             "nativeSrc": "4285:141:39",
             "nodeType": "YulFunctionDefinition",
             "parameters": [
@@ -7517,7 +7517,7 @@
                           }
                         ],
                         "functionName": {
-                          "name": "convert_t_contract$_Tether_$5628_to_t_address",
+                          "name": "convert_t_contract$_Tether_$5640_to_t_address",
                           "nativeSrc": "4534:45:39",
                           "nodeType": "YulIdentifier",
                           "src": "4534:45:39"
@@ -7543,7 +7543,7 @@
                 }
               ]
             },
-            "name": "abi_encode_t_contract$_Tether_$5628_to_t_address_fromStack",
+            "name": "abi_encode_t_contract$_Tether_$5640_to_t_address_fromStack",
             "nativeSrc": "4432:161:39",
             "nodeType": "YulFunctionDefinition",
             "parameters": [
@@ -7648,7 +7648,7 @@
                       }
                     ],
                     "functionName": {
-                      "name": "abi_encode_t_contract$_Tether_$5628_to_t_address_fromStack",
+                      "name": "abi_encode_t_contract$_Tether_$5640_to_t_address_fromStack",
                       "nativeSrc": "4758:58:39",
                       "nodeType": "YulIdentifier",
                       "src": "4758:58:39"
@@ -7663,7 +7663,7 @@
                 }
               ]
             },
-            "name": "abi_encode_tuple_t_contract$_Tether_$5628__to_t_address__fromStack_reversed",
+            "name": "abi_encode_tuple_t_contract$_Tether_$5640__to_t_address__fromStack_reversed",
             "nativeSrc": "4599:252:39",
             "nodeType": "YulFunctionDefinition",
             "parameters": [
@@ -10031,7 +10031,7 @@
           }
         ]
       },
-      "contents": "{\n\n    function array_length_t_string_memory_ptr(value) -> length {\n\n        length := mload(value)\n\n    }\n\n    function array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, length) -> updated_pos {\n        mstore(pos, length)\n        updated_pos := add(pos, 0x20)\n    }\n\n    function copy_memory_to_memory_with_cleanup(src, dst, length) {\n\n        let i := 0\n        for { } lt(i, length) { i := add(i, 32) }\n        {\n            mstore(add(dst, i), mload(add(src, i)))\n        }\n        mstore(add(dst, length), 0)\n\n    }\n\n    function round_up_to_mul_of_32(value) -> result {\n        result := and(add(value, 31), not(31))\n    }\n\n    function abi_encode_t_string_memory_ptr_to_t_string_memory_ptr_fromStack(value, pos) -> end {\n        let length := array_length_t_string_memory_ptr(value)\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, length)\n        copy_memory_to_memory_with_cleanup(add(value, 0x20), pos, length)\n        end := add(pos, round_up_to_mul_of_32(length))\n    }\n\n    function abi_encode_tuple_t_string_memory_ptr__to_t_string_memory_ptr__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_string_memory_ptr_to_t_string_memory_ptr_fromStack(value0,  tail)\n\n    }\n\n    function cleanup_t_uint160(value) -> cleaned {\n        cleaned := and(value, 0xffffffffffffffffffffffffffffffffffffffff)\n    }\n\n    function identity(value) -> ret {\n        ret := value\n    }\n\n    function convert_t_uint160_to_t_uint160(value) -> converted {\n        converted := cleanup_t_uint160(identity(cleanup_t_uint160(value)))\n    }\n\n    function convert_t_uint160_to_t_address(value) -> converted {\n        converted := convert_t_uint160_to_t_uint160(value)\n    }\n\n    function convert_t_contract$_RWD_$5440_to_t_address(value) -> converted {\n        converted := convert_t_uint160_to_t_address(value)\n    }\n\n    function abi_encode_t_contract$_RWD_$5440_to_t_address_fromStack(value, pos) {\n        mstore(pos, convert_t_contract$_RWD_$5440_to_t_address(value))\n    }\n\n    function abi_encode_tuple_t_contract$_RWD_$5440__to_t_address__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        abi_encode_t_contract$_RWD_$5440_to_t_address_fromStack(value0,  add(headStart, 0))\n\n    }\n\n    function allocate_unbounded() -> memPtr {\n        memPtr := mload(64)\n    }\n\n    function revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() {\n        revert(0, 0)\n    }\n\n    function revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() {\n        revert(0, 0)\n    }\n\n    function cleanup_t_address(value) -> cleaned {\n        cleaned := cleanup_t_uint160(value)\n    }\n\n    function validator_revert_t_address(value) {\n        if iszero(eq(value, cleanup_t_address(value))) { revert(0, 0) }\n    }\n\n    function abi_decode_t_address(offset, end) -> value {\n        value := calldataload(offset)\n        validator_revert_t_address(value)\n    }\n\n    function abi_decode_tuple_t_address(headStart, dataEnd) -> value0 {\n        if slt(sub(dataEnd, headStart), 32) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_address(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function cleanup_t_bool(value) -> cleaned {\n        cleaned := iszero(iszero(value))\n    }\n\n    function abi_encode_t_bool_to_t_bool_fromStack(value, pos) {\n        mstore(pos, cleanup_t_bool(value))\n    }\n\n    function abi_encode_tuple_t_bool__to_t_bool__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        abi_encode_t_bool_to_t_bool_fromStack(value0,  add(headStart, 0))\n\n    }\n\n    function cleanup_t_uint256(value) -> cleaned {\n        cleaned := value\n    }\n\n    function abi_encode_t_uint256_to_t_uint256_fromStack(value, pos) {\n        mstore(pos, cleanup_t_uint256(value))\n    }\n\n    function abi_encode_tuple_t_uint256__to_t_uint256__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        abi_encode_t_uint256_to_t_uint256_fromStack(value0,  add(headStart, 0))\n\n    }\n\n    function convert_t_contract$_Tether_$5628_to_t_address(value) -> converted {\n        converted := convert_t_uint160_to_t_address(value)\n    }\n\n    function abi_encode_t_contract$_Tether_$5628_to_t_address_fromStack(value, pos) {\n        mstore(pos, convert_t_contract$_Tether_$5628_to_t_address(value))\n    }\n\n    function abi_encode_tuple_t_contract$_Tether_$5628__to_t_address__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        abi_encode_t_contract$_Tether_$5628_to_t_address_fromStack(value0,  add(headStart, 0))\n\n    }\n\n    function abi_encode_t_address_to_t_address_fromStack(value, pos) {\n        mstore(pos, cleanup_t_address(value))\n    }\n\n    function abi_encode_tuple_t_address__to_t_address__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        abi_encode_t_address_to_t_address_fromStack(value0,  add(headStart, 0))\n\n    }\n\n    function validator_revert_t_uint256(value) {\n        if iszero(eq(value, cleanup_t_uint256(value))) { revert(0, 0) }\n    }\n\n    function abi_decode_t_uint256(offset, end) -> value {\n        value := calldataload(offset)\n        validator_revert_t_uint256(value)\n    }\n\n    function abi_decode_tuple_t_uint256(headStart, dataEnd) -> value0 {\n        if slt(sub(dataEnd, headStart), 32) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_uint256(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function panic_error_0x22() {\n        mstore(0, 35408467139433450592217433187231851964531694900788300625387963629091585785856)\n        mstore(4, 0x22)\n        revert(0, 0x24)\n    }\n\n    function extract_byte_array_length(data) -> length {\n        length := div(data, 2)\n        let outOfPlaceEncoding := and(data, 1)\n        if iszero(outOfPlaceEncoding) {\n            length := and(length, 0x7f)\n        }\n\n        if eq(outOfPlaceEncoding, lt(length, 32)) {\n            panic_error_0x22()\n        }\n    }\n\n    function store_literal_in_memory_acbe2cd51f2a94e2c8ab2183672e7cbce3999d37d6c88385796487df59414261(memPtr) {\n\n        mstore(add(memPtr, 0), \"amount cannot be zero\")\n\n    }\n\n    function abi_encode_t_stringliteral_acbe2cd51f2a94e2c8ab2183672e7cbce3999d37d6c88385796487df59414261_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 21)\n        store_literal_in_memory_acbe2cd51f2a94e2c8ab2183672e7cbce3999d37d6c88385796487df59414261(pos)\n        end := add(pos, 32)\n    }\n\n    function abi_encode_tuple_t_stringliteral_acbe2cd51f2a94e2c8ab2183672e7cbce3999d37d6c88385796487df59414261__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_acbe2cd51f2a94e2c8ab2183672e7cbce3999d37d6c88385796487df59414261_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_address_t_address_t_uint256__to_t_address_t_address_t_uint256__fromStack_reversed(headStart , value2, value1, value0) -> tail {\n        tail := add(headStart, 96)\n\n        abi_encode_t_address_to_t_address_fromStack(value0,  add(headStart, 0))\n\n        abi_encode_t_address_to_t_address_fromStack(value1,  add(headStart, 32))\n\n        abi_encode_t_uint256_to_t_uint256_fromStack(value2,  add(headStart, 64))\n\n    }\n\n    function validator_revert_t_bool(value) {\n        if iszero(eq(value, cleanup_t_bool(value))) { revert(0, 0) }\n    }\n\n    function abi_decode_t_bool_fromMemory(offset, end) -> value {\n        value := mload(offset)\n        validator_revert_t_bool(value)\n    }\n\n    function abi_decode_tuple_t_bool_fromMemory(headStart, dataEnd) -> value0 {\n        if slt(sub(dataEnd, headStart), 32) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_bool_fromMemory(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function panic_error_0x11() {\n        mstore(0, 35408467139433450592217433187231851964531694900788300625387963629091585785856)\n        mstore(4, 0x11)\n        revert(0, 0x24)\n    }\n\n    function checked_add_t_uint256(x, y) -> sum {\n        x := cleanup_t_uint256(x)\n        y := cleanup_t_uint256(y)\n        sum := add(x, y)\n\n        if gt(x, sum) { panic_error_0x11() }\n\n    }\n\n}\n",
+      "contents": "{\n\n    function array_length_t_string_memory_ptr(value) -> length {\n\n        length := mload(value)\n\n    }\n\n    function array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, length) -> updated_pos {\n        mstore(pos, length)\n        updated_pos := add(pos, 0x20)\n    }\n\n    function copy_memory_to_memory_with_cleanup(src, dst, length) {\n\n        let i := 0\n        for { } lt(i, length) { i := add(i, 32) }\n        {\n            mstore(add(dst, i), mload(add(src, i)))\n        }\n        mstore(add(dst, length), 0)\n\n    }\n\n    function round_up_to_mul_of_32(value) -> result {\n        result := and(add(value, 31), not(31))\n    }\n\n    function abi_encode_t_string_memory_ptr_to_t_string_memory_ptr_fromStack(value, pos) -> end {\n        let length := array_length_t_string_memory_ptr(value)\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, length)\n        copy_memory_to_memory_with_cleanup(add(value, 0x20), pos, length)\n        end := add(pos, round_up_to_mul_of_32(length))\n    }\n\n    function abi_encode_tuple_t_string_memory_ptr__to_t_string_memory_ptr__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_string_memory_ptr_to_t_string_memory_ptr_fromStack(value0,  tail)\n\n    }\n\n    function cleanup_t_uint160(value) -> cleaned {\n        cleaned := and(value, 0xffffffffffffffffffffffffffffffffffffffff)\n    }\n\n    function identity(value) -> ret {\n        ret := value\n    }\n\n    function convert_t_uint160_to_t_uint160(value) -> converted {\n        converted := cleanup_t_uint160(identity(cleanup_t_uint160(value)))\n    }\n\n    function convert_t_uint160_to_t_address(value) -> converted {\n        converted := convert_t_uint160_to_t_uint160(value)\n    }\n\n    function convert_t_contract$_RWD_$5452_to_t_address(value) -> converted {\n        converted := convert_t_uint160_to_t_address(value)\n    }\n\n    function abi_encode_t_contract$_RWD_$5452_to_t_address_fromStack(value, pos) {\n        mstore(pos, convert_t_contract$_RWD_$5452_to_t_address(value))\n    }\n\n    function abi_encode_tuple_t_contract$_RWD_$5452__to_t_address__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        abi_encode_t_contract$_RWD_$5452_to_t_address_fromStack(value0,  add(headStart, 0))\n\n    }\n\n    function allocate_unbounded() -> memPtr {\n        memPtr := mload(64)\n    }\n\n    function revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() {\n        revert(0, 0)\n    }\n\n    function revert_error_c1322bf8034eace5e0b5c7295db60986aa89aae5e0ea0873e4689e076861a5db() {\n        revert(0, 0)\n    }\n\n    function cleanup_t_address(value) -> cleaned {\n        cleaned := cleanup_t_uint160(value)\n    }\n\n    function validator_revert_t_address(value) {\n        if iszero(eq(value, cleanup_t_address(value))) { revert(0, 0) }\n    }\n\n    function abi_decode_t_address(offset, end) -> value {\n        value := calldataload(offset)\n        validator_revert_t_address(value)\n    }\n\n    function abi_decode_tuple_t_address(headStart, dataEnd) -> value0 {\n        if slt(sub(dataEnd, headStart), 32) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_address(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function cleanup_t_bool(value) -> cleaned {\n        cleaned := iszero(iszero(value))\n    }\n\n    function abi_encode_t_bool_to_t_bool_fromStack(value, pos) {\n        mstore(pos, cleanup_t_bool(value))\n    }\n\n    function abi_encode_tuple_t_bool__to_t_bool__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        abi_encode_t_bool_to_t_bool_fromStack(value0,  add(headStart, 0))\n\n    }\n\n    function cleanup_t_uint256(value) -> cleaned {\n        cleaned := value\n    }\n\n    function abi_encode_t_uint256_to_t_uint256_fromStack(value, pos) {\n        mstore(pos, cleanup_t_uint256(value))\n    }\n\n    function abi_encode_tuple_t_uint256__to_t_uint256__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        abi_encode_t_uint256_to_t_uint256_fromStack(value0,  add(headStart, 0))\n\n    }\n\n    function convert_t_contract$_Tether_$5640_to_t_address(value) -> converted {\n        converted := convert_t_uint160_to_t_address(value)\n    }\n\n    function abi_encode_t_contract$_Tether_$5640_to_t_address_fromStack(value, pos) {\n        mstore(pos, convert_t_contract$_Tether_$5640_to_t_address(value))\n    }\n\n    function abi_encode_tuple_t_contract$_Tether_$5640__to_t_address__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        abi_encode_t_contract$_Tether_$5640_to_t_address_fromStack(value0,  add(headStart, 0))\n\n    }\n\n    function abi_encode_t_address_to_t_address_fromStack(value, pos) {\n        mstore(pos, cleanup_t_address(value))\n    }\n\n    function abi_encode_tuple_t_address__to_t_address__fromStack_reversed(headStart , value0) -> tail {\n        tail := add(headStart, 32)\n\n        abi_encode_t_address_to_t_address_fromStack(value0,  add(headStart, 0))\n\n    }\n\n    function validator_revert_t_uint256(value) {\n        if iszero(eq(value, cleanup_t_uint256(value))) { revert(0, 0) }\n    }\n\n    function abi_decode_t_uint256(offset, end) -> value {\n        value := calldataload(offset)\n        validator_revert_t_uint256(value)\n    }\n\n    function abi_decode_tuple_t_uint256(headStart, dataEnd) -> value0 {\n        if slt(sub(dataEnd, headStart), 32) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_uint256(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function panic_error_0x22() {\n        mstore(0, 35408467139433450592217433187231851964531694900788300625387963629091585785856)\n        mstore(4, 0x22)\n        revert(0, 0x24)\n    }\n\n    function extract_byte_array_length(data) -> length {\n        length := div(data, 2)\n        let outOfPlaceEncoding := and(data, 1)\n        if iszero(outOfPlaceEncoding) {\n            length := and(length, 0x7f)\n        }\n\n        if eq(outOfPlaceEncoding, lt(length, 32)) {\n            panic_error_0x22()\n        }\n    }\n\n    function store_literal_in_memory_acbe2cd51f2a94e2c8ab2183672e7cbce3999d37d6c88385796487df59414261(memPtr) {\n\n        mstore(add(memPtr, 0), \"amount cannot be zero\")\n\n    }\n\n    function abi_encode_t_stringliteral_acbe2cd51f2a94e2c8ab2183672e7cbce3999d37d6c88385796487df59414261_to_t_string_memory_ptr_fromStack(pos) -> end {\n        pos := array_storeLengthForEncoding_t_string_memory_ptr_fromStack(pos, 21)\n        store_literal_in_memory_acbe2cd51f2a94e2c8ab2183672e7cbce3999d37d6c88385796487df59414261(pos)\n        end := add(pos, 32)\n    }\n\n    function abi_encode_tuple_t_stringliteral_acbe2cd51f2a94e2c8ab2183672e7cbce3999d37d6c88385796487df59414261__to_t_string_memory_ptr__fromStack_reversed(headStart ) -> tail {\n        tail := add(headStart, 32)\n\n        mstore(add(headStart, 0), sub(tail, headStart))\n        tail := abi_encode_t_stringliteral_acbe2cd51f2a94e2c8ab2183672e7cbce3999d37d6c88385796487df59414261_to_t_string_memory_ptr_fromStack( tail)\n\n    }\n\n    function abi_encode_tuple_t_address_t_address_t_uint256__to_t_address_t_address_t_uint256__fromStack_reversed(headStart , value2, value1, value0) -> tail {\n        tail := add(headStart, 96)\n\n        abi_encode_t_address_to_t_address_fromStack(value0,  add(headStart, 0))\n\n        abi_encode_t_address_to_t_address_fromStack(value1,  add(headStart, 32))\n\n        abi_encode_t_uint256_to_t_uint256_fromStack(value2,  add(headStart, 64))\n\n    }\n\n    function validator_revert_t_bool(value) {\n        if iszero(eq(value, cleanup_t_bool(value))) { revert(0, 0) }\n    }\n\n    function abi_decode_t_bool_fromMemory(offset, end) -> value {\n        value := mload(offset)\n        validator_revert_t_bool(value)\n    }\n\n    function abi_decode_tuple_t_bool_fromMemory(headStart, dataEnd) -> value0 {\n        if slt(sub(dataEnd, headStart), 32) { revert_error_dbdddcbe895c83990c08b3492a0e83918d802a52331272ac6fdb6a7c4aea3b1b() }\n\n        {\n\n            let offset := 0\n\n            value0 := abi_decode_t_bool_fromMemory(add(headStart, offset), dataEnd)\n        }\n\n    }\n\n    function panic_error_0x11() {\n        mstore(0, 35408467139433450592217433187231851964531694900788300625387963629091585785856)\n        mstore(4, 0x11)\n        revert(0, 0x24)\n    }\n\n    function checked_add_t_uint256(x, y) -> sum {\n        x := cleanup_t_uint256(x)\n        y := cleanup_t_uint256(y)\n        sum := add(x, y)\n\n        if gt(x, sum) { panic_error_0x11() }\n\n    }\n\n}\n",
       "id": 39,
       "language": "Yul",
       "name": "#utility.yul"
@@ -10048,7 +10048,7 @@
         4231
       ],
       "DecentralBank": [
-        5172
+        5184
       ],
       "ERC20": [
         4097
@@ -10063,18 +10063,18 @@
         4201
       ],
       "RWD": [
-        5440
+        5452
       ],
       "Tether": [
-        5628
+        5640
       ]
     },
-    "id": 5173,
+    "id": 5185,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 5060,
+        "id": 5072,
         "literals": [
           "solidity",
           ">=",
@@ -10090,11 +10090,11 @@
       {
         "absolutePath": "project:/src/contracts/RWD.sol",
         "file": "./RWD.sol",
-        "id": 5061,
+        "id": 5073,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 5173,
-        "sourceUnit": 5441,
+        "scope": 5185,
+        "sourceUnit": 5453,
         "src": "69:19:31",
         "symbolAliases": [],
         "unitAlias": ""
@@ -10102,11 +10102,11 @@
       {
         "absolutePath": "project:/src/contracts/Tether.sol",
         "file": "./Tether.sol",
-        "id": 5062,
+        "id": 5074,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 5173,
-        "sourceUnit": 5629,
+        "scope": 5185,
+        "sourceUnit": 5641,
         "src": "90:22:31",
         "symbolAliases": [],
         "unitAlias": ""
@@ -10118,9 +10118,9 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 5172,
+        "id": 5184,
         "linearizedBaseContracts": [
-          5172
+          5184
         ],
         "name": "DecentralBank",
         "nameLocation": "125:13:31",
@@ -10129,12 +10129,12 @@
           {
             "constant": false,
             "functionSelector": "06fdde03",
-            "id": 5065,
+            "id": 5077,
             "mutability": "mutable",
             "name": "name",
             "nameLocation": "160:4:31",
             "nodeType": "VariableDeclaration",
-            "scope": 5172,
+            "scope": 5184,
             "src": "146:37:31",
             "stateVariable": true,
             "storageLocation": "default",
@@ -10143,7 +10143,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 5063,
+              "id": 5075,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "146:6:31",
@@ -10154,7 +10154,7 @@
             },
             "value": {
               "hexValue": "446563656e7472616c2042616e6b",
-              "id": 5064,
+              "id": 5076,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -10173,12 +10173,12 @@
           {
             "constant": false,
             "functionSelector": "8da5cb5b",
-            "id": 5067,
+            "id": 5079,
             "mutability": "mutable",
             "name": "owner",
             "nameLocation": "205:5:31",
             "nodeType": "VariableDeclaration",
-            "scope": 5172,
+            "scope": 5184,
             "src": "190:20:31",
             "stateVariable": true,
             "storageLocation": "default",
@@ -10187,7 +10187,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 5066,
+              "id": 5078,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "190:7:31",
@@ -10202,36 +10202,36 @@
           {
             "constant": false,
             "functionSelector": "5efc071a",
-            "id": 5070,
+            "id": 5082,
             "mutability": "mutable",
             "name": "tether",
             "nameLocation": "233:6:31",
             "nodeType": "VariableDeclaration",
-            "scope": 5172,
+            "scope": 5184,
             "src": "219:20:31",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_Tether_$5628",
+              "typeIdentifier": "t_contract$_Tether_$5640",
               "typeString": "contract Tether"
             },
             "typeName": {
-              "id": 5069,
+              "id": 5081,
               "nodeType": "UserDefinedTypeName",
               "pathNode": {
-                "id": 5068,
+                "id": 5080,
                 "name": "Tether",
                 "nameLocations": [
                   "219:6:31"
                 ],
                 "nodeType": "IdentifierPath",
-                "referencedDeclaration": 5628,
+                "referencedDeclaration": 5640,
                 "src": "219:6:31"
               },
-              "referencedDeclaration": 5628,
+              "referencedDeclaration": 5640,
               "src": "219:6:31",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Tether_$5628",
+                "typeIdentifier": "t_contract$_Tether_$5640",
                 "typeString": "contract Tether"
               }
             },
@@ -10240,36 +10240,36 @@
           {
             "constant": false,
             "functionSelector": "1a8972d3",
-            "id": 5073,
+            "id": 5085,
             "mutability": "mutable",
             "name": "rwd",
             "nameLocation": "257:3:31",
             "nodeType": "VariableDeclaration",
-            "scope": 5172,
+            "scope": 5184,
             "src": "246:14:31",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_RWD_$5440",
+              "typeIdentifier": "t_contract$_RWD_$5452",
               "typeString": "contract RWD"
             },
             "typeName": {
-              "id": 5072,
+              "id": 5084,
               "nodeType": "UserDefinedTypeName",
               "pathNode": {
-                "id": 5071,
+                "id": 5083,
                 "name": "RWD",
                 "nameLocations": [
                   "246:3:31"
                 ],
                 "nodeType": "IdentifierPath",
-                "referencedDeclaration": 5440,
+                "referencedDeclaration": 5452,
                 "src": "246:3:31"
               },
-              "referencedDeclaration": 5440,
+              "referencedDeclaration": 5452,
               "src": "246:3:31",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_RWD_$5440",
+                "typeIdentifier": "t_contract$_RWD_$5452",
                 "typeString": "contract RWD"
               }
             },
@@ -10278,12 +10278,12 @@
           {
             "constant": false,
             "functionSelector": "fd5e6dd1",
-            "id": 5076,
+            "id": 5088,
             "mutability": "mutable",
             "name": "stakers",
             "nameLocation": "286:7:31",
             "nodeType": "VariableDeclaration",
-            "scope": 5172,
+            "scope": 5184,
             "src": "269:24:31",
             "stateVariable": true,
             "storageLocation": "default",
@@ -10293,7 +10293,7 @@
             },
             "typeName": {
               "baseType": {
-                "id": 5074,
+                "id": 5086,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
                 "src": "269:7:31",
@@ -10303,7 +10303,7 @@
                   "typeString": "address"
                 }
               },
-              "id": 5075,
+              "id": 5087,
               "nodeType": "ArrayTypeName",
               "src": "269:9:31",
               "typeDescriptions": {
@@ -10316,12 +10316,12 @@
           {
             "constant": false,
             "functionSelector": "45bc78ab",
-            "id": 5080,
+            "id": 5092,
             "mutability": "mutable",
             "name": "stakingBalance",
             "nameLocation": "334:14:31",
             "nodeType": "VariableDeclaration",
-            "scope": 5172,
+            "scope": 5184,
             "src": "302:46:31",
             "stateVariable": true,
             "storageLocation": "default",
@@ -10330,11 +10330,11 @@
               "typeString": "mapping(address => uint256)"
             },
             "typeName": {
-              "id": 5079,
+              "id": 5091,
               "keyName": "",
               "keyNameLocation": "-1:-1:-1",
               "keyType": {
-                "id": 5077,
+                "id": 5089,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
                 "src": "310:7:31",
@@ -10352,7 +10352,7 @@
               "valueName": "",
               "valueNameLocation": "-1:-1:-1",
               "valueType": {
-                "id": 5078,
+                "id": 5090,
                 "name": "uint",
                 "nodeType": "ElementaryTypeName",
                 "src": "321:4:31",
@@ -10367,12 +10367,12 @@
           {
             "constant": false,
             "functionSelector": "32ac90cf",
-            "id": 5084,
+            "id": 5096,
             "mutability": "mutable",
             "name": "hasStacked",
             "nameLocation": "387:10:31",
             "nodeType": "VariableDeclaration",
-            "scope": 5172,
+            "scope": 5184,
             "src": "355:42:31",
             "stateVariable": true,
             "storageLocation": "default",
@@ -10381,11 +10381,11 @@
               "typeString": "mapping(address => bool)"
             },
             "typeName": {
-              "id": 5083,
+              "id": 5095,
               "keyName": "",
               "keyNameLocation": "-1:-1:-1",
               "keyType": {
-                "id": 5081,
+                "id": 5093,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
                 "src": "363:7:31",
@@ -10403,7 +10403,7 @@
               "valueName": "",
               "valueNameLocation": "-1:-1:-1",
               "valueType": {
-                "id": 5082,
+                "id": 5094,
                 "name": "bool",
                 "nodeType": "ElementaryTypeName",
                 "src": "374:4:31",
@@ -10418,12 +10418,12 @@
           {
             "constant": false,
             "functionSelector": "c03a033e",
-            "id": 5088,
+            "id": 5100,
             "mutability": "mutable",
             "name": "isStacked",
             "nameLocation": "436:9:31",
             "nodeType": "VariableDeclaration",
-            "scope": 5172,
+            "scope": 5184,
             "src": "404:41:31",
             "stateVariable": true,
             "storageLocation": "default",
@@ -10432,11 +10432,11 @@
               "typeString": "mapping(address => bool)"
             },
             "typeName": {
-              "id": 5087,
+              "id": 5099,
               "keyName": "",
               "keyNameLocation": "-1:-1:-1",
               "keyType": {
-                "id": 5085,
+                "id": 5097,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
                 "src": "412:7:31",
@@ -10454,7 +10454,7 @@
               "valueName": "",
               "valueNameLocation": "-1:-1:-1",
               "valueType": {
-                "id": 5086,
+                "id": 5098,
                 "name": "bool",
                 "nodeType": "ElementaryTypeName",
                 "src": "423:4:31",
@@ -10468,109 +10468,109 @@
           },
           {
             "body": {
-              "id": 5110,
+              "id": 5122,
               "nodeType": "Block",
               "src": "491:85:31",
               "statements": [
                 {
                   "expression": {
-                    "id": 5099,
+                    "id": 5111,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 5097,
+                      "id": 5109,
                       "name": "rwd",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 5073,
+                      "referencedDeclaration": 5085,
                       "src": "502:3:31",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_RWD_$5440",
+                        "typeIdentifier": "t_contract$_RWD_$5452",
                         "typeString": "contract RWD"
                       }
                     },
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-                      "id": 5098,
+                      "id": 5110,
                       "name": "_rwd",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 5091,
+                      "referencedDeclaration": 5103,
                       "src": "508:4:31",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_RWD_$5440",
+                        "typeIdentifier": "t_contract$_RWD_$5452",
                         "typeString": "contract RWD"
                       }
                     },
                     "src": "502:10:31",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_RWD_$5440",
+                      "typeIdentifier": "t_contract$_RWD_$5452",
                       "typeString": "contract RWD"
                     }
                   },
-                  "id": 5100,
+                  "id": 5112,
                   "nodeType": "ExpressionStatement",
                   "src": "502:10:31"
                 },
                 {
                   "expression": {
-                    "id": 5103,
+                    "id": 5115,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 5101,
+                      "id": 5113,
                       "name": "tether",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 5070,
+                      "referencedDeclaration": 5082,
                       "src": "523:6:31",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_Tether_$5628",
+                        "typeIdentifier": "t_contract$_Tether_$5640",
                         "typeString": "contract Tether"
                       }
                     },
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-                      "id": 5102,
+                      "id": 5114,
                       "name": "_tether",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 5094,
+                      "referencedDeclaration": 5106,
                       "src": "532:7:31",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_Tether_$5628",
+                        "typeIdentifier": "t_contract$_Tether_$5640",
                         "typeString": "contract Tether"
                       }
                     },
                     "src": "523:16:31",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Tether_$5628",
+                      "typeIdentifier": "t_contract$_Tether_$5640",
                       "typeString": "contract Tether"
                     }
                   },
-                  "id": 5104,
+                  "id": 5116,
                   "nodeType": "ExpressionStatement",
                   "src": "523:16:31"
                 },
                 {
                   "expression": {
-                    "id": 5108,
+                    "id": 5120,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 5105,
+                      "id": 5117,
                       "name": "owner",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 5067,
+                      "referencedDeclaration": 5079,
                       "src": "550:5:31",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -10581,7 +10581,7 @@
                     "operator": "=",
                     "rightHandSide": {
                       "expression": {
-                        "id": 5106,
+                        "id": 5118,
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
@@ -10592,7 +10592,7 @@
                           "typeString": "msg"
                         }
                       },
-                      "id": 5107,
+                      "id": 5119,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -10612,13 +10612,13 @@
                       "typeString": "address"
                     }
                   },
-                  "id": 5109,
+                  "id": 5121,
                   "nodeType": "ExpressionStatement",
                   "src": "550:18:31"
                 }
               ]
             },
-            "id": 5111,
+            "id": 5123,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
@@ -10626,41 +10626,41 @@
             "nameLocation": "-1:-1:-1",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5095,
+              "id": 5107,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5091,
+                  "id": 5103,
                   "mutability": "mutable",
                   "name": "_rwd",
                   "nameLocation": "470:4:31",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5111,
+                  "scope": 5123,
                   "src": "466:8:31",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_RWD_$5440",
+                    "typeIdentifier": "t_contract$_RWD_$5452",
                     "typeString": "contract RWD"
                   },
                   "typeName": {
-                    "id": 5090,
+                    "id": 5102,
                     "nodeType": "UserDefinedTypeName",
                     "pathNode": {
-                      "id": 5089,
+                      "id": 5101,
                       "name": "RWD",
                       "nameLocations": [
                         "466:3:31"
                       ],
                       "nodeType": "IdentifierPath",
-                      "referencedDeclaration": 5440,
+                      "referencedDeclaration": 5452,
                       "src": "466:3:31"
                     },
-                    "referencedDeclaration": 5440,
+                    "referencedDeclaration": 5452,
                     "src": "466:3:31",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_RWD_$5440",
+                      "typeIdentifier": "t_contract$_RWD_$5452",
                       "typeString": "contract RWD"
                     }
                   },
@@ -10668,36 +10668,36 @@
                 },
                 {
                   "constant": false,
-                  "id": 5094,
+                  "id": 5106,
                   "mutability": "mutable",
                   "name": "_tether",
                   "nameLocation": "482:7:31",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5111,
+                  "scope": 5123,
                   "src": "475:14:31",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_Tether_$5628",
+                    "typeIdentifier": "t_contract$_Tether_$5640",
                     "typeString": "contract Tether"
                   },
                   "typeName": {
-                    "id": 5093,
+                    "id": 5105,
                     "nodeType": "UserDefinedTypeName",
                     "pathNode": {
-                      "id": 5092,
+                      "id": 5104,
                       "name": "Tether",
                       "nameLocations": [
                         "475:6:31"
                       ],
                       "nodeType": "IdentifierPath",
-                      "referencedDeclaration": 5628,
+                      "referencedDeclaration": 5640,
                       "src": "475:6:31"
                     },
-                    "referencedDeclaration": 5628,
+                    "referencedDeclaration": 5640,
                     "src": "475:6:31",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Tether_$5628",
+                      "typeIdentifier": "t_contract$_Tether_$5640",
                       "typeString": "contract Tether"
                     }
                   },
@@ -10707,12 +10707,12 @@
               "src": "465:25:31"
             },
             "returnParameters": {
-              "id": 5096,
+              "id": 5108,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "491:0:31"
             },
-            "scope": 5172,
+            "scope": 5184,
             "src": "454:122:31",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -10720,7 +10720,7 @@
           },
           {
             "body": {
-              "id": 5170,
+              "id": 5182,
               "nodeType": "Block",
               "src": "628:350:31",
               "statements": [
@@ -10732,17 +10732,17 @@
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         },
-                        "id": 5119,
+                        "id": 5131,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
-                          "id": 5117,
+                          "id": 5129,
                           "name": "_amount",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 5113,
+                          "referencedDeclaration": 5125,
                           "src": "647:7:31",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -10753,7 +10753,7 @@
                         "operator": ">",
                         "rightExpression": {
                           "hexValue": "30",
-                          "id": 5118,
+                          "id": 5130,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -10775,7 +10775,7 @@
                       },
                       {
                         "hexValue": "616d6f756e742063616e6e6f74206265207a65726f",
-                        "id": 5120,
+                        "id": 5132,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -10801,7 +10801,7 @@
                           "typeString": "literal_string \"amount cannot be zero\""
                         }
                       ],
-                      "id": 5116,
+                      "id": 5128,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -10816,7 +10816,7 @@
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 5121,
+                    "id": 5133,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -10832,7 +10832,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 5122,
+                  "id": 5134,
                   "nodeType": "ExpressionStatement",
                   "src": "639:44:31"
                 },
@@ -10841,7 +10841,7 @@
                     "arguments": [
                       {
                         "expression": {
-                          "id": 5126,
+                          "id": 5138,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
@@ -10852,7 +10852,7 @@
                             "typeString": "msg"
                           }
                         },
-                        "id": 5127,
+                        "id": 5139,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -10869,14 +10869,14 @@
                       {
                         "arguments": [
                           {
-                            "id": 5130,
+                            "id": 5142,
                             "name": "this",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 4294967268,
                             "src": "736:4:31",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_DecentralBank_$5172",
+                              "typeIdentifier": "t_contract$_DecentralBank_$5184",
                               "typeString": "contract DecentralBank"
                             }
                           }
@@ -10884,11 +10884,11 @@
                         "expression": {
                           "argumentTypes": [
                             {
-                              "typeIdentifier": "t_contract$_DecentralBank_$5172",
+                              "typeIdentifier": "t_contract$_DecentralBank_$5184",
                               "typeString": "contract DecentralBank"
                             }
                           ],
-                          "id": 5129,
+                          "id": 5141,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -10900,14 +10900,14 @@
                             "typeString": "type(address)"
                           },
                           "typeName": {
-                            "id": 5128,
+                            "id": 5140,
                             "name": "address",
                             "nodeType": "ElementaryTypeName",
                             "src": "728:7:31",
                             "typeDescriptions": {}
                           }
                         },
-                        "id": 5131,
+                        "id": 5143,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -10924,11 +10924,11 @@
                         }
                       },
                       {
-                        "id": 5132,
+                        "id": 5144,
                         "name": "_amount",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 5113,
+                        "referencedDeclaration": 5125,
                         "src": "743:7:31",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -10952,18 +10952,18 @@
                         }
                       ],
                       "expression": {
-                        "id": 5123,
+                        "id": 5135,
                         "name": "tether",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 5070,
+                        "referencedDeclaration": 5082,
                         "src": "696:6:31",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_Tether_$5628",
+                          "typeIdentifier": "t_contract$_Tether_$5640",
                           "typeString": "contract Tether"
                         }
                       },
-                      "id": 5125,
+                      "id": 5137,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -10971,14 +10971,14 @@
                       "memberLocation": "703:12:31",
                       "memberName": "transferFrom",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 5627,
+                      "referencedDeclaration": 5639,
                       "src": "696:19:31",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_uint256_$returns$_t_bool_$",
                         "typeString": "function (address,address,uint256) external returns (bool)"
                       }
                     },
-                    "id": 5133,
+                    "id": 5145,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -10994,34 +10994,34 @@
                       "typeString": "bool"
                     }
                   },
-                  "id": 5134,
+                  "id": 5146,
                   "nodeType": "ExpressionStatement",
                   "src": "696:55:31"
                 },
                 {
                   "expression": {
-                    "id": 5140,
+                    "id": 5152,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "baseExpression": {
-                        "id": 5135,
+                        "id": 5147,
                         "name": "stakingBalance",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 5080,
+                        "referencedDeclaration": 5092,
                         "src": "762:14:31",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
                           "typeString": "mapping(address => uint256)"
                         }
                       },
-                      "id": 5138,
+                      "id": 5150,
                       "indexExpression": {
                         "expression": {
-                          "id": 5136,
+                          "id": 5148,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
@@ -11032,7 +11032,7 @@
                             "typeString": "msg"
                           }
                         },
-                        "id": 5137,
+                        "id": 5149,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -11060,11 +11060,11 @@
                     "nodeType": "Assignment",
                     "operator": "+=",
                     "rightHandSide": {
-                      "id": 5139,
+                      "id": 5151,
                       "name": "_amount",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 5113,
+                      "referencedDeclaration": 5125,
                       "src": "792:7:31",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -11077,13 +11077,13 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 5141,
+                  "id": 5153,
                   "nodeType": "ExpressionStatement",
                   "src": "762:37:31"
                 },
                 {
                   "condition": {
-                    "id": 5146,
+                    "id": 5158,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -11094,21 +11094,21 @@
                     "src": "815:23:31",
                     "subExpression": {
                       "baseExpression": {
-                        "id": 5142,
+                        "id": 5154,
                         "name": "hasStacked",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 5084,
+                        "referencedDeclaration": 5096,
                         "src": "816:10:31",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
                           "typeString": "mapping(address => bool)"
                         }
                       },
-                      "id": 5145,
+                      "id": 5157,
                       "indexExpression": {
                         "expression": {
-                          "id": 5143,
+                          "id": 5155,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
@@ -11119,7 +11119,7 @@
                             "typeString": "msg"
                           }
                         },
-                        "id": 5144,
+                        "id": 5156,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -11149,11 +11149,11 @@
                       "typeString": "bool"
                     }
                   },
-                  "id": 5155,
+                  "id": 5167,
                   "nodeType": "IfStatement",
                   "src": "812:78:31",
                   "trueBody": {
-                    "id": 5154,
+                    "id": 5166,
                     "nodeType": "Block",
                     "src": "839:51:31",
                     "statements": [
@@ -11162,7 +11162,7 @@
                           "arguments": [
                             {
                               "expression": {
-                                "id": 5150,
+                                "id": 5162,
                                 "name": "msg",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
@@ -11173,7 +11173,7 @@
                                   "typeString": "msg"
                                 }
                               },
-                              "id": 5151,
+                              "id": 5163,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -11196,18 +11196,18 @@
                               }
                             ],
                             "expression": {
-                              "id": 5147,
+                              "id": 5159,
                               "name": "stakers",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 5076,
+                              "referencedDeclaration": 5088,
                               "src": "854:7:31",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_array$_t_address_$dyn_storage",
                                 "typeString": "address[] storage ref"
                               }
                             },
-                            "id": 5149,
+                            "id": 5161,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -11221,7 +11221,7 @@
                               "typeString": "function (address[] storage pointer,address)"
                             }
                           },
-                          "id": 5152,
+                          "id": 5164,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -11237,7 +11237,7 @@
                             "typeString": "tuple()"
                           }
                         },
-                        "id": 5153,
+                        "id": 5165,
                         "nodeType": "ExpressionStatement",
                         "src": "854:24:31"
                       }
@@ -11246,28 +11246,28 @@
                 },
                 {
                   "expression": {
-                    "id": 5161,
+                    "id": 5173,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "baseExpression": {
-                        "id": 5156,
+                        "id": 5168,
                         "name": "isStacked",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 5088,
+                        "referencedDeclaration": 5100,
                         "src": "902:9:31",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
                           "typeString": "mapping(address => bool)"
                         }
                       },
-                      "id": 5159,
+                      "id": 5171,
                       "indexExpression": {
                         "expression": {
-                          "id": 5157,
+                          "id": 5169,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
@@ -11278,7 +11278,7 @@
                             "typeString": "msg"
                           }
                         },
-                        "id": 5158,
+                        "id": 5170,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -11307,7 +11307,7 @@
                     "operator": "=",
                     "rightHandSide": {
                       "hexValue": "74727565",
-                      "id": 5160,
+                      "id": 5172,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -11327,34 +11327,34 @@
                       "typeString": "bool"
                     }
                   },
-                  "id": 5162,
+                  "id": 5174,
                   "nodeType": "ExpressionStatement",
                   "src": "902:28:31"
                 },
                 {
                   "expression": {
-                    "id": 5168,
+                    "id": 5180,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "baseExpression": {
-                        "id": 5163,
+                        "id": 5175,
                         "name": "hasStacked",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 5084,
+                        "referencedDeclaration": 5096,
                         "src": "941:10:31",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
                           "typeString": "mapping(address => bool)"
                         }
                       },
-                      "id": 5166,
+                      "id": 5178,
                       "indexExpression": {
                         "expression": {
-                          "id": 5164,
+                          "id": 5176,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
@@ -11365,7 +11365,7 @@
                             "typeString": "msg"
                           }
                         },
-                        "id": 5165,
+                        "id": 5177,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -11394,7 +11394,7 @@
                     "operator": "=",
                     "rightHandSide": {
                       "hexValue": "74727565",
-                      "id": 5167,
+                      "id": 5179,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -11414,14 +11414,14 @@
                       "typeString": "bool"
                     }
                   },
-                  "id": 5169,
+                  "id": 5181,
                   "nodeType": "ExpressionStatement",
                   "src": "941:29:31"
                 }
               ]
             },
             "functionSelector": "dd49756e",
-            "id": 5171,
+            "id": 5183,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -11429,17 +11429,17 @@
             "nameLocation": "593:13:31",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5114,
+              "id": 5126,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5113,
+                  "id": 5125,
                   "mutability": "mutable",
                   "name": "_amount",
                   "nameLocation": "612:7:31",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5171,
+                  "scope": 5183,
                   "src": "607:12:31",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -11448,7 +11448,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5112,
+                    "id": 5124,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "607:4:31",
@@ -11463,19 +11463,19 @@
               "src": "606:14:31"
             },
             "returnParameters": {
-              "id": 5115,
+              "id": 5127,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "628:0:31"
             },
-            "scope": 5172,
+            "scope": 5184,
             "src": "584:394:31",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 5173,
+        "scope": 5185,
         "src": "116:867:31",
         "usedErrors": [],
         "usedEvents": []
@@ -11496,7 +11496,7 @@
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2024-06-02T11:25:47.343Z",
+  "updatedAt": "2024-06-02T15:41:09.033Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

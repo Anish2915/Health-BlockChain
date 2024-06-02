@@ -19,6 +19,9 @@ contract CompanyNFT is Ownable {
         string AddImage; //
         string Desc; //
         uint256 Duration; //
+        uint256 DateReleased;
+        string MessageToOwner;
+        string MessageFromOwner;
     }
 
     mapping(address => bool) public registeredCompanies;
@@ -45,19 +48,30 @@ contract CompanyNFT is Ownable {
         emit CompanyRegistered(msg.sender, name);
     }
 
-    function releaseNFT(string memory name, uint256 price) external onlyRegisteredCompany {
+    function releaseNFT(string memory name, uint256 price ,string memory _nftImage,
+        string memory addImage,
+        string memory desc,
+        uint256 duration,
+        string memory msgFrom ) external onlyRegisteredCompany {
         require(price > 0, "Price must be greater than zero");
         nfts.push(NFT({
             name: name,
             price: price,
             owner: msg.sender,
             RealOwner: msg.sender,
-            CurrentlyUnder: false
+            CurrentlyUnder: false,
+            NftImage: _nftImage,
+            AddImage: addImage,
+            Desc: desc,
+            Duration: duration,
+            DateReleased: block.timestamp,
+            MessageToOwner: "",
+            MessageFromOwner: msgFrom
         }));
         emit NFTReleased(msg.sender, name, price);
     }
 
-    function buyNFT(uint256 nftIndex) external {
+    function buyNFT(uint256 nftIndex, string memory msgToOwner) external {
         require(nftIndex < nfts.length, "NFT does not exist");
         NFT storage nft = nfts[nftIndex];
         require(nft.owner != msg.sender, "You already own this NFT");
@@ -65,7 +79,7 @@ contract CompanyNFT is Ownable {
 
         nft.owner = msg.sender;
         nft.CurrentlyUnder = true;
-
+        nft.MessageToOwner = msgToOwner;
         emit NFTBought(msg.sender, nft.name, nft.price, nft.owner);
     }
 
@@ -77,6 +91,7 @@ contract CompanyNFT is Ownable {
         require(rwdToken.transferFrom(rwdTokenDeployer, msg.sender, nft.price), "RWD transfer failed");
         nft.owner = rwdTokenDeployer;
         nft.CurrentlyUnder = false;
+        nft.MessageToOwner = "";
         emit NFTSold(msg.sender, nft.name, nft.price, rwdTokenDeployer);
     }
 
@@ -91,5 +106,8 @@ contract CompanyNFT is Ownable {
 
     function nextTokenId() external view returns (uint256) {
         return nfts.length;
+    }
+    function isCompanyRegistered(address account) public view returns (bool) {
+        return registeredCompanies[account];
     }
 }

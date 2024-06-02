@@ -8,6 +8,8 @@ import '../styles/Company.css';
 // Importing contracts
 import CompanyNFT from '../../truffle_abis/CompanyNFT.json';
 
+const contractAddress = '0x15839c8647026a02D5Faac12232B648d010C949e';
+
 function Company({ account }) {
     const [selfNft, setSelfNft] = useState([]);
     const [companyName, setCompanyName] = useState('');
@@ -17,7 +19,8 @@ function Company({ account }) {
         description: '',
         duration: '',
         nftImg: '',
-        adImg: ''
+        adImg: '',
+        msgToOwner: ''
     });
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -29,14 +32,13 @@ function Company({ account }) {
                 alert('MetaMask is not installed!');
                 return;
             }
-            setCompanyName("testComp");
 
             await window.ethereum.request({ method: 'eth_requestAccounts' });
 
             const provider = new ethers.providers.Web3Provider(window.ethereum);
             const signer = provider.getSigner();
 
-            const contractAddress = '0x0836c013763A153814B62FCBcCabd4f2781F7d94';
+            // const contractAddress = '0x0836c013763A153814B62FCBcCabd4f2781F7d94';
 
             const contract = new ethers.Contract(contractAddress, CompanyNFT.abi, signer);
 
@@ -61,7 +63,7 @@ function Company({ account }) {
             const provider = new ethers.providers.Web3Provider(window.ethereum);
             const signer = provider.getSigner();
 
-            const contractAddress = '0x0836c013763A153814B62FCBcCabd4f2781F7d94';
+            // const contractAddress = '0x0836c013763A153814B62FCBcCabd4f2781F7d94';
 
             const contract = new ethers.Contract(contractAddress, CompanyNFT.abi, signer);
 
@@ -80,9 +82,17 @@ function Company({ account }) {
                 description: '',
                 duration: '',
                 nftImg: '',
-                adImg: ''
+                adImg: '',
+                msgToOwner: ''
             });
         }
+    };
+
+    const calculateTimeLeft = (duration, dateReleased) => {
+        const currentTimestamp = Math.floor(Date.now() / 1000);
+        const secondsInDay = 86400; // 24 * 60 * 60
+        const daysPassed = Math.floor((currentTimestamp - dateReleased) / secondsInDay);
+        return duration - daysPassed;
     };
 
     const fetchSelfNFTs = async () => {         // Sent by copilot
@@ -96,7 +106,7 @@ function Company({ account }) {
             const provider = new ethers.providers.Web3Provider(window.ethereum);
             const signer = provider.getSigner();
 
-            const contractAddress = '0x0836c013763A153814B62FCBcCabd4f2781F7d94';
+            // const contractAddress = '0x0836c013763A153814B62FCBcCabd4f2781F7d94';
 
             const contract = new ethers.Contract(contractAddress, CompanyNFT.abi, signer);
 
@@ -105,20 +115,23 @@ function Company({ account }) {
             const nftList = [];
             for (let i = 0; i < nftCount; i++) {
                 const nftInfo = await contract.nfts(i);
-                nftList.push({
-                    tokenId: i,
-                    name: nftInfo.name,
-                    description: nftInfo.description,
-                    price: ethers.utils.formatEther(nftInfo.price),
-                    duration: nftInfo.duration,
-                    image: nftInfo.image,
-                    adImg: nftInfo.adImg
-                });
+                if (nftInfo.RealOwner == account) {
+                    nftList.push({
+                        tokenId: i,
+                        name: nftInfo.name,
+                        description: nftInfo.Desc,
+                        price: ethers.utils.formatEther(nftInfo.price),
+                        duration: calculateTimeLeft(nftInfo.duration, nftInfo.DateReleased),
+                        image: nftInfo.image,
+                        adImg: nftInfo.adImg,
+                        msgToOwner: nftInfo.MessageToOwner
+                    });
+                }
             }
 
             setSelfNft(nftList);
         } catch (error) {
-            console.error('Error fetching NFTs:', error);
+            setError(`Error fetching NFTs: ${error.message}`);
         }
     }
 
@@ -135,11 +148,9 @@ function Company({ account }) {
                 const provider = new ethers.providers.Web3Provider(window.ethereum);
                 const signer = provider.getSigner();
 
-                const contractAddress = '0x0836c013763A153814B62FCBcCabd4f2781F7d94';
+                const contract = new ethers.Contract(contractAddress, CompanyNFT.abi, provider);
 
-                const contract = new ethers.Contract(contractAddress, CompanyNFT.abi, signer);
-
-                const isRegistered = await contract.isRegistered();
+                const isRegistered = await contract.isCompanyRegistered(account);
 
                 setIsRegistered(isRegistered);
             } catch (error) {

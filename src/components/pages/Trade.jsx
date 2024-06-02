@@ -27,14 +27,14 @@ function Trading({ account }) {
             const nftList = [];
             for (let i = 0; i < nftCount; i++) {
                 const nftInfo = await contract.nfts(i);
-                //if(nftInfo.CurrentlyUnder == false){
+                if(nftInfo.CurrentlyUnder == false){
                 nftList.push({
                     tokenId: i,
                     name: nftInfo.name,
                     // duration: nftInfo.duration,
                     price: ethers.utils.formatEther(nftInfo.price)
                 });
-            //}
+            }
             }
 
             console.log(nftList);
@@ -63,7 +63,7 @@ function Trading({ account }) {
             
             // Wait for the transaction to be mined
             await tx.wait();
-    
+            fetchBuyNft();
             console.log('NFT purchased successfully', tx);
         } catch (error) {
             console.error('Error purchasing NFT:', error);

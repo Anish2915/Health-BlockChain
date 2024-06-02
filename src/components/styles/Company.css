@@ -2,12 +2,102 @@
     width: 100%;
     margin-top: 5.290625em;
     padding: 0.5rem;
+    box-sizing: border-box;
 }
 
-.Company .registrationForm {
+/* Registration Form */
+.registrationForm {
+    margin: auto;
+    width: min(600px, 80%);
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: black; /* Set the background color to black */
+}
+
+.registrationForm input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    opacity: 0.5;
+    background-color: transparent; /* Make the input fields transparent */
+    color: white; /* Set the text color to white */
+}
+
+.registrationForm button {
+    background-color: #854d28;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    width: 100%; /* Make the button full width */
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.registrationForm button:hover {
+    background-color: #6e4225;
+}
+
+
+
+/* NFT Deployment Form */
+.NFTdeploy {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: white; /* Set text color to white for black background */
+  }
+  
+  .currentNft {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 2px solid red;
-}
+    text-align: center;
+    font-weight: bold;
+    margin: 1rem 2rem;
+  }
+  
+  .currentNft img {
+    width: 13rem;
+    height: 13rem;
+    border-radius: 35%;
+    margin-bottom: 2rem;
+  }
+  
+  .nftDeployForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Add spacing between form elements */
+    margin: 1rem 2rem;
+  }
+  
+  .nftDeployForm input,
+  .nftDeployForm button {
+    padding: 10px;
+    border: 1px solid #ccc; /* Light border for inputs and button */
+    border-radius: 1rem;
+    background-color: #f2f2f2; /* Light background color for inputs and button */
+    color: #333; /* Text color for inputs and button */
+  }
+  
+  .nftDeployForm input[type="text"],
+  .nftDeployForm input[type="number"] {
+    width: 30em;
+  }
+  
+  .nftDeployForm button {
+    background-color: #4CAF50; /* Green color for button */
+    color: white; /* White text for button */
+    cursor: pointer; /* Indicate clickable button */
+  }
+  
+  .nftDeployForm button:hover {
+    background-color: #3e8e41; /* Darker green on hover */
+  }
+  

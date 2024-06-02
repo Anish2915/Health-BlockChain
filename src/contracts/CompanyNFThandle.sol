@@ -10,11 +10,15 @@ contract CompanyNFT is Ownable {
     address public rwdTokenDeployer;
 
     struct NFT {
-        string name;
-        uint256 price;
-        address owner;
-        address RealOwner;
-        bool CurrentlyUnder;
+        string name; //
+        uint256 price; //
+        address owner; 
+        address RealOwner; 
+        bool CurrentlyUnder; 
+        string NftImage; //
+        string AddImage; //
+        string Desc; //
+        uint256 Duration; //
     }
 
     mapping(address => bool) public registeredCompanies;

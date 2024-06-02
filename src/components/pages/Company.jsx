@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { ethers } from 'ethers';
 
 // Importing styles
@@ -160,7 +161,7 @@ function Company({ account }) {
             {error && <p className='error'>{error}</p>}
 
             {account !== '0x0' ? (
-                <> {isRegistered === false ? (
+                <> {isRegistered === true ? (
                     <form onSubmit={handleRegister} className='registrationForm'>
                         <input
                             type="text"
@@ -227,13 +228,13 @@ function Company({ account }) {
 
                         {selfNft.length > 0 ? (
                             <div>
-                                {selfNft.map((item, index) => (
-                                    <div key={index}>
+                                {selfNft.map((item) => (
+                                    <Link key={item.tokenId} to={`/nft/${item.tokenId}`}>
                                         <img src={item.image} alt={item.name} />
                                         <h3>{item.name}</h3>
                                         <p>{item.description}</p>
                                         <p>{item.price}</p>
-                                    </div>
+                                    </Link>
                                 ))}
                             </div>
                         ) : (

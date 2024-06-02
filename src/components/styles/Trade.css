@@ -4,6 +4,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    box-sizing: border-box;
 }
 
 /* Warning */
@@ -52,4 +53,123 @@
     background-color: #ffcc00 !important;
     color: black !important;
     border-radius: 2rem !important;
+}
+
+/* Listing of all the NFTs available */
+/* Style for the wholeNftsDetails container */
+.Trade .wholeNftsDetails {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Style for the nftWrapper container */
+.Trade .wholeNftsDetails .nftWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    /* border: 1px solid #ccc; */
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 1.2rem;
+    width: 90vw;
+}
+
+/* Style for the nftDetail container */
+.Trade .wholeNftsDetails .nftDetail {
+    background-color: #222;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.4rem 1rem;
+    width: 90vw;
+    margin-bottom: 0.5rem;
+}
+
+/* Style for the essentialDetails container */
+.Trade .wholeNftsDetails .essentialDetails {
+    font-size: 1em;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+    padding: 0 0.5rem;
+}
+
+/* Style for the leftEssentialDetails container */
+.Trade .wholeNftsDetails .leftEssentialDetails {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* Style for the image */
+.Trade .wholeNftsDetails .leftEssentialDetails img {
+    width: 3rem;
+    margin: 0 2rem 0 1rem;
+}
+
+/* Style for the Link */
+.Trade .wholeNftsDetails .leftEssentialDetails a {
+    color: #ffeea9;
+    text-decoration: none;
+    font-size: 2em;
+    margin-right: 1rem;
+}
+
+.Trade .wholeNftsDetails .leftEssentialDetails a:hover {
+    color: #ffcc00;
+}
+
+/* Style for the price */
+.Trade .wholeNftsDetails .leftEssentialDetails p {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: aquamarine;
+    font-size: 1.5rem;
+    margin-top: 0.6rem;
+    font-style: italic;
+}
+
+.Trade .wholeNftsDetails .essentialDetails > p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffeea9;
+    margin-top: 0.55rem;
+
+}
+
+/* Style for the showDescription */
+.Trade .wholeNftsDetails .description {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+}
+
+.Trade .wholeNftsDetails .description input {
+    width: calc(90vw - 1.6rem);
+    padding: 0.5rem;
+    font-size: 1em;
+    border-radius: 1rem;
+    margin: 0.5rem 0;
+    border: 2px solid red;
+}
+
+/* Style for the Buy NFT button */
+.Trade .wholeNftsDetails button {
+    background-color: #ff5722;
+    font-weight: bold;
+    font-size:  800;
+    color: white;
+    padding: 0.5rem 5rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    width: 100%;
 }

@@ -11,6 +11,7 @@ import Home from './pages/Home';
 import Trade from './pages/Trade';
 import CrossChain from './pages/CrossChain';
 import Company from './pages/Company';
+import NftPage from './pages/NftPage';
 import Footer from './comp/Footer';
 
 class App extends Component{
@@ -99,9 +100,10 @@ class App extends Component{
                     <NavbarUser account={this.state.account} setAccount={this.setAccount} />
                     <Routes>
                         <Route path='/' element={<Home account={this.state.account} setAccount={this.setAccount} />}/>
-                        <Route path='/trade' element={<Trade account={this.state.account} setAccount={this.setAccount} />} />
-                        <Route path='/cross-chain' element={<CrossChain />} />
-                        <Route path='/company' element={<Company />} />
+                        <Route path='/trade' element={<Trade account={this.state.account} />} />
+                        <Route path='/cross-chain' element={<CrossChain account={this.state.account} />} />
+                        <Route path='/company' element={<Company account={this.state.account} />} />
+                        <Route path='nft/:nftid' element={<NftPage />} />
                     </Routes>
                     <Footer />
                 </BrowserRouter>

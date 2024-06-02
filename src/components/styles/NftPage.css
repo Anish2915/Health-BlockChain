@@ -1,0 +1,75 @@
+/* NftPage.css */
+
+/* Overall section styling */
+.NftPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    /* Add other common styles for the entire section */
+}
+
+/* Heading section styling */
+.headingOfNft {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    /* Add styles for the image and heading text */
+}
+
+.headingOfNft img {
+    max-width: 100%;
+    height: auto;
+    /* Additional image styles */
+}
+
+.headingOfNft h1 {
+    font-size: 24px;
+    margin-top: 10px;
+    /* Additional heading styles */
+}
+
+/* Detail section styling */
+.detail {
+    margin-bottom: 20px;
+    /* Add styles for the detail section */
+}
+
+.detail p {
+    font-size: 16px;
+    /* Additional paragraph styles */
+}
+
+.detail a {
+    color: #007bff;
+    text-decoration: none;
+    /* Additional link styles */
+}
+
+/* Purchase list styling */
+.purchaseList {
+    /* Add styles for the purchase list section */
+}
+
+.purchaseList h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    /* Additional heading styles */
+}
+
+.purchaseList ul {
+    list-style: none;
+    padding: 0;
+    /* Additional list styles */
+}
+
+.purchaseList li {
+    margin-bottom: 10px;
+    /* Additional list item styles */
+}
+
+.purchaseList p {
+    font-size: 14px;
+    /* Additional paragraph styles */
+}

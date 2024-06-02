@@ -2,7 +2,7 @@ import React from 'react';
 
 // Impo
 
-function CrossChain() {
+function CrossChain({ account }) {
     return (
         <section>
             <h1>Cross Chain</h1>

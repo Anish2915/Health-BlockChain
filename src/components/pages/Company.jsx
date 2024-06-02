@@ -5,7 +5,7 @@ import { ethers } from 'ethers';
 import '../styles/Company.css';
 import CompanyNFT from '../../truffle_abis/CompanyNFT.json';
 
-function Company() {
+function Company({ account }) {
     const [selfNft, setSelfNft] = useState([]);
     const [companyName, setCompanyName] = useState('');
 

@@ -6,7 +6,7 @@ import { ethers } from 'ethers';
 import '../styles/Trade.css';
 import CompanyNFT from '../../truffle_abis/CompanyNFT.json';
 
-function Trading({ account, setAccount }) {
+function Trading({ account }) {
     const [buyNft, setBuyNft] = useState([]);
     const [sellNft, setSellNft] = useState([]);
     const [activeTab, setActiveTab] = useState('buy');

@@ -18,7 +18,7 @@ function Home({ account, setAccount }) {
     const [docToJudge, setDocToJudge] = useState(null);
     const [activeSection, setActiveSection] = useState('mybmi');
     const [rwdBalance, setRwdBalance] = useState(0);
-    const [heightCm, setHeightCm] = useState(0);
+    const [heightCm, setHeightCm] = useState();
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const imageRef = useRef(null);

@@ -16,7 +16,7 @@ function Trading({ account }) {
         try {
             // Connect to Ethereum provider
             const provider = new ethers.providers.Web3Provider(window.ethereum);
-            const contractAddress = '0x0836c013763A153814B62FCBcCabd4f2781F7d94'; // Contract address
+            const contractAddress = '0x03dafb3618dAf48CeC9Ae0A419fa0F3E7A62a002'; // Contract address
             const contract = new ethers.Contract(contractAddress, CompanyNFT.abi, provider);
 
             // Fetch NFT count
@@ -27,14 +27,14 @@ function Trading({ account }) {
             const nftList = [];
             for (let i = 0; i < nftCount; i++) {
                 const nftInfo = await contract.nfts(i);
-                if(nftInfo.CurrentlyUnder == false){
+                //if(nftInfo.CurrentlyUnder == false){
                 nftList.push({
                     tokenId: i,
                     name: nftInfo.name,
                     // duration: nftInfo.duration,
                     price: ethers.utils.formatEther(nftInfo.price)
                 });
-            }
+            //}
             }
 
             console.log(nftList);
@@ -51,7 +51,7 @@ function Trading({ account }) {
 
             const provider = new ethers.providers.Web3Provider(window.ethereum);
             const signer = provider.getSigner();
-            const contractAddress = '0x0836c013763A153814B62FCBcCabd4f2781F7d94'; // Contract address
+            const contractAddress = '0x03dafb3618dAf48CeC9Ae0A419fa0F3E7A62a002'; // Contract address
             const contract = new ethers.Contract(contractAddress, CompanyNFT.abi, signer);
 
             
@@ -75,7 +75,7 @@ function Trading({ account }) {
         try {
             // Connect to Ethereum provider
             const provider = new ethers.providers.Web3Provider(window.ethereum);
-            const contractAddress = '0x0836c013763A153814B62FCBcCabd4f2781F7d94'; // Contract address
+            const contractAddress = '0x03dafb3618dAf48CeC9Ae0A419fa0F3E7A62a002'; // Contract address
             const contract = new ethers.Contract(contractAddress, CompanyNFT.abi, provider);
 
             // Fetch NFT count
@@ -110,7 +110,7 @@ function Trading({ account }) {
 
             const provider = new ethers.providers.Web3Provider(window.ethereum);
             const signer = provider.getSigner();
-            const contractAddress = '0x0836c013763A153814B62FCBcCabd4f2781F7d94'; // Contract address
+            const contractAddress = '0x03dafb3618dAf48CeC9Ae0A419fa0F3E7A62a002'; // Contract address
             const contract = new ethers.Contract(contractAddress, CompanyNFT.abi, signer);
 
             

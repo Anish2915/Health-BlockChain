@@ -18464,14 +18464,109 @@
   },
   "networks": {
     "5777": {
-      "events": {},
+      "events": {
+        "0x423d094827a00d73e9894994edd714372d862b1f954475c157ef76dbe4e7e718": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "user",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "bmi",
+              "type": "uint256"
+            }
+          ],
+          "name": "BMIRecorded",
+          "type": "event"
+        },
+        "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "previousOwner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "newOwner",
+              "type": "address"
+            }
+          ],
+          "name": "OwnershipTransferred",
+          "type": "event"
+        },
+        "0x3ad0c8d1bbd63d54c5f14180eae95cab7c2420b2dbb90603a6e5d206668f52ec": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "user",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "RewardGiven",
+          "type": "event"
+        },
+        "0x5b9bc78b12184cb147f4e8a6900423e638fb226f8f735050d0cbd29fb4a3a10b": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "user",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "date",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "month",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "year",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "gender",
+              "type": "string"
+            }
+          ],
+          "name": "UserRegistered",
+          "type": "event"
+        }
+      },
       "links": {},
-      "address": "0x1A7A9F8603Fb5a499552603206576F0e5d968e35",
-      "transactionHash": "0xc7109e4f29aab612c773b4834f90b87bea62385e8b7f0246472b21a0d316245e"
+      "address": "0x87a99eA7299b5FeE9e56CAAd09af14B352AD892E",
+      "transactionHash": "0xab43c7176b65f1eda98f8de20178290bf8353477c073c7034869e89213857b87"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2024-06-01T20:38:01.117Z",
+  "updatedAt": "2024-06-02T11:25:47.375Z",
   "networkType": "ethereum",
   "devdoc": {
     "errors": {

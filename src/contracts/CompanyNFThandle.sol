@@ -88,4 +88,7 @@ contract CompanyNFT is Ownable {
     function nextTokenId() external view returns (uint256) {
         return nfts.length;
     }
+    function isCompanyRegistered(address account) public view returns (bool) {
+        return registeredCompanies[account];
+    }
 }

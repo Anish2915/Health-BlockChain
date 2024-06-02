@@ -125,9 +125,12 @@ function Home({ account, setAccount }) {
         // Get the last uploaded BMI (assuming the array is not empty)
         const lastBMI = bmiHistory[bmiHistory.length - 1];
 
+        if(lastBMI){
         console.log('Last uploaded BMI:', lastBMI.toString());
+        
         if(bmiHistory.length>0){
             SetLastBmi(parseFloat(lastBMI.toString())/1000);
+        }
         }
     }
 

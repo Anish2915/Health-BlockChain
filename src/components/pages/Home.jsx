@@ -10,14 +10,15 @@ import '../styles/Home.css';
 // Importing comp
 import Card from '../comp/Card';
 import Upload from '../../truffle_abis/Upload.json'
-const RewardAddress = '0x0d81FfbccD514b1645BBcE3F417F280b1C811C01';
-const UploadAddress = '0x1A7A9F8603Fb5a499552603206576F0e5d968e35';
+const RewardAddress = '0x5B105498b5d396CdD17C867F6D5693a6108479eA';
+const UploadAddress = '0x87a99eA7299b5FeE9e56CAAd09af14B352AD892E';
 
 function Home({ account, setAccount }) {
     const [imageToJudge, setImageToJudge] = useState(null);
     const [docToJudge, setDocToJudge] = useState(null);
     const [activeSection, setActiveSection] = useState('mybmi');
     const [rwdBalance, setRwdBalance] = useState(0);
+    const [LastBmiVar, SetLastBmi] = useState(0);
     const [heightCm, setHeightCm] = useState();
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -96,7 +97,8 @@ function Home({ account, setAccount }) {
 
     useEffect(() => {
         if (account !== '0x0') {
-            fetchRwdBalance(); // Fetch RWD balance when the account changes
+            fetchRwdBalance();
+            GetLastBmi(); // Fetch RWD balance when the account changes
         }
     }, [account]); // Dependency array to watch for changes in account
 
@@ -114,6 +116,24 @@ function Home({ account, setAccount }) {
         }
     };
 
+    const GetLastBmi = async () => {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const contractt = new ethers.Contract(UploadAddress, Upload.abi, provider);
+
+        const bmiHistory = await contractt.getBMIs(account);
+
+        // Get the last uploaded BMI (assuming the array is not empty)
+        const lastBMI = bmiHistory[bmiHistory.length - 1];
+
+        if(lastBMI){
+        console.log('Last uploaded BMI:', lastBMI.toString());
+        
+        if(bmiHistory.length>0){
+            SetLastBmi(parseFloat(lastBMI.toString())/1000);
+        }
+        }
+    }
+
     const initEthers = async () => {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
@@ -124,9 +144,9 @@ function Home({ account, setAccount }) {
 
       const LoginUserEnd = async (date, month, year, gender) => {
         try {
-          if (!contract) {
+          
             await initEthers();
-          }
+          
           const tx = await contract.login(date, month, year, gender);
           await tx.wait();
           console.log("User logged in:", tx);
@@ -137,9 +157,9 @@ function Home({ account, setAccount }) {
     
       const UploadDataLast = async (bmi) => {
         try {
-          if (!contract) {
+          
             await initEthers();
-          }
+          
           const tx = await contract.recordBMI(bmi);
           await tx.wait();
           console.log("BMI uploaded:", tx);
@@ -204,16 +224,17 @@ function Home({ account, setAccount }) {
             {account !== '0x0' ? <div id="profile">
                 <div className='greeting'>Hi, {account} &nbsp; <BsEmojiLaughingFill /></div>
                 <div className="profileInsight">
+                
                     <Card
-                        title={`BMI: ${"24.5"}`}                                                    // To be replaced
+                        title={`BMI: ${LastBmiVar}`}                                                    // To be replaced
                         cardImg="https://cdn-icons-png.flaticon.com/512/10476/10476452.png"
-                        cardText={`${"Your BMI is 24.5. You are in the normal range."}`}            // To be replaced
+                        cardText={`${"Your BMI is . You are in the normal range."}`}            // To be replaced
                         className='card'
                     />
                     <Card
                         title={`RWD: ${rwdBalance}`}                                                                    // To be changed
                         cardImg="./RWDtoken.png"
-                        cardText={`${"Your current balance of RWD is 0.5. Be healthier to earn more rewards."}`}  // To be changed
+                        cardText={`${"Your current balance of RWD. Be healthier to earn more rewards."}`}  // To be changed
                         className='card'
                     />
                 </div>
@@ -248,6 +269,7 @@ function Home({ account, setAccount }) {
                             <p>Your BMI is 24.5. You are in the normal range.</p>
                             <button onClick={() => LoginUserEnd(1, 1, 2000, 'male')}>Login User</button>
                             <button onClick={() => UploadDataLast(23000)}>Upload BMI</button>
+                            <button onClick={GetLastBmi}>get bmi</button>
                         </div>
                     )}
                     {activeSection === 'rwd' && (

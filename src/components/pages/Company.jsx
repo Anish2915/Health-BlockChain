@@ -7,6 +7,8 @@ import '../styles/Company.css';
 // Importing contracts
 import CompanyNFT from '../../truffle_abis/CompanyNFT.json';
 
+const contractAddress = '0x15839c8647026a02D5Faac12232B648d010C949e';
+
 function Company({ account }) {
     const [selfNft, setSelfNft] = useState([]);
     const [companyName, setCompanyName] = useState('');
@@ -28,14 +30,13 @@ function Company({ account }) {
                 alert('MetaMask is not installed!');
                 return;
             }
-            setCompanyName("testComp");
 
             await window.ethereum.request({ method: 'eth_requestAccounts' });
 
             const provider = new ethers.providers.Web3Provider(window.ethereum);
             const signer = provider.getSigner();
 
-            const contractAddress = '0x0836c013763A153814B62FCBcCabd4f2781F7d94';
+            // const contractAddress = '0x0836c013763A153814B62FCBcCabd4f2781F7d94';
 
             const contract = new ethers.Contract(contractAddress, CompanyNFT.abi, signer);
 
@@ -60,7 +61,7 @@ function Company({ account }) {
             const provider = new ethers.providers.Web3Provider(window.ethereum);
             const signer = provider.getSigner();
 
-            const contractAddress = '0x0836c013763A153814B62FCBcCabd4f2781F7d94';
+            // const contractAddress = '0x0836c013763A153814B62FCBcCabd4f2781F7d94';
 
             const contract = new ethers.Contract(contractAddress, CompanyNFT.abi, signer);
 
@@ -117,7 +118,7 @@ function Company({ account }) {
 
             setSelfNft(nftList);
         } catch (error) {
-            console.error('Error fetching NFTs:', error);
+            setError(`Error fetching NFTs: ${error.message}`);
         }
     }
 
@@ -134,11 +135,9 @@ function Company({ account }) {
                 const provider = new ethers.providers.Web3Provider(window.ethereum);
                 const signer = provider.getSigner();
 
-                const contractAddress = '0x0836c013763A153814B62FCBcCabd4f2781F7d94';
+                const contract = new ethers.Contract(contractAddress, CompanyNFT.abi, provider);
 
-                const contract = new ethers.Contract(contractAddress, CompanyNFT.abi, signer);
-
-                const isRegistered = await contract.isRegistered();
+                const isRegistered = await contract.isCompanyRegistered(account);
 
                 setIsRegistered(isRegistered);
             } catch (error) {

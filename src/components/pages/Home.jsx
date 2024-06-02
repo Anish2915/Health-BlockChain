@@ -17,6 +17,10 @@ function Home({ account, setAccount }) {
     const [imageToJudge, setImageToJudge] = useState(null);
     const [docToJudge, setDocToJudge] = useState(null);
     const [activeSection, setActiveSection] = useState('mybmi');
+    const [rwdBalance, setRwdBalance] = useState(0);
+    const [heightCm, setHeightCm] = useState(0);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
     const imageRef = useRef(null);
     const docRef = useRef(null);
 
@@ -61,12 +65,34 @@ function Home({ account, setAccount }) {
             await handleWalletConnection();
         }
 
-        const formData = new FormData();
-        formData.append('image', imageToJudge);
-        formData.append('doc', docToJudge);
+        try {
+            setLoading(true);
+            const formData = new FormData();
+            formData.append('image', imageToJudge);
+            formData.append('doc', docToJudge);
+            formData.append('height', heightCm);
+
+            const response = await fetch('http://127.0.0.1:8000/user/upload', {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (response.status === 200) {
+                const data = await response.data;
+                console.log(data);
+                // Send this data to backend of solidity for validation
+            } else {
+                setError(`Error in validating data: ${response.data.error}`)
+            }
+        } catch (error) {
+            setError(`Error in validating data: ${error.message}`)
+        } finally {
+            setLoading(false);
+            setImageToJudge(null);
+            setDocToJudge(null);
+        }
     }
 
-    const [rwdBalance, setRwdBalance] = useState(0);
 
     useEffect(() => {
         if (account !== '0x0') {
@@ -127,11 +153,19 @@ function Home({ account, setAccount }) {
             <form onSubmit={handleFormSubmit}>
                 <div className="container">
                     <input
+                        type="text"
+                        placeholder='Enter your height in cm'
+                        value={heightCm}
+                        onChange={(e) => setHeightCm(e.target.value)}
+                        required
+                    />
+                    <input
                         ref={imageRef}
                         type="file"
                         onChange={handleImageChange}
                         allowed="image/*"
                         className='imageInput'
+                        required
                     />
                     <button onClick={handleImgClick} className='green'>
                         <span></span>
@@ -146,6 +180,7 @@ function Home({ account, setAccount }) {
                         onChange={handleDocChange}
                         allowed='application/pdf'
                         className='docInput'
+                        required
                     />
                     <button onClick={handleDocClick} className='pink'>
                         <span></span>
@@ -155,14 +190,16 @@ function Home({ account, setAccount }) {
                         Upload you BMI
                     </button>
                 </div>
-                <button type='submit' className="button blue">
+                <button type='submit' className="button blue" disabled={loading}>
                     <span></span>
                     <span></span>
                     <span></span>
                     <span></span>
-                    Submit
+                    {loading ? "Loading..." : "Submit"}
                 </button>
             </form>
+
+            {error && <div className="error">{error}</div>}
 
             {account !== '0x0' ? <div id="profile">
                 <div className='greeting'>Hi, {account} &nbsp; <BsEmojiLaughingFill /></div>

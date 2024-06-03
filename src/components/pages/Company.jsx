@@ -180,17 +180,6 @@ function Company({ account }) {
         fetchSelfNFTs();
     }, [isRegistered, account]);
 
-    const toggleDescriptiveDetails = (nftTokenId) => {
-        const description = document.getElementById(nftTokenId);
-        if (description) {
-            if (description.style.display === 'flex') {
-                description.style.display = 'none';
-            } else {
-                description.style.display = 'flex';
-            }
-        }
-    }
-
     return (
         <section className='Company'>
             {error && <p className='error'>{error}</p>}

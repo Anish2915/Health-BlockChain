@@ -216,7 +216,7 @@ function Trading({ account }) {
                                         />
                                     </div>
                                 </div>
-                                <button onClick={() => buyNftClick(item.tokenId)}>Buy NFT</button>
+                                <button onClick={() => buyNftClicked(item.tokenId)}>Buy NFT</button>
                             </div>
                         ))}
                     </div>

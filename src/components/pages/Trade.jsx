@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ethers } from 'ethers';
 
@@ -7,10 +7,17 @@ import '../styles/Trade.css';
 import CompanyNFT from '../../truffle_abis/CompanyNFT.json';
 
 function Trading({ account }) {
-    const [buyNft, setBuyNft] = useState({});
-    const [sellNft, setSellNft] = useState({});
+    const [buyNft, setBuyNft] = useState([]);
+    const [sellNft, setSellNft] = useState([]);
     const [activeTab, setActiveTab] = useState('buy');
-    const [messageToOwner, setMessageToOwner] = useState('');
+    const [messageToOwner, setMessageToOwner] = useState({});
+
+    const calculateTimeLeft = (duration, dateReleased) => {
+        const currentTimestamp = Math.floor(Date.now() / 1000);
+        const secondsInDay = 86400; // 24 * 60 * 60
+        const daysPassed = Math.floor((currentTimestamp - dateReleased) / secondsInDay);
+        return duration - daysPassed;
+    };
 
     const fetchBuyNft = async () => {
         setActiveTab('buy');
@@ -32,13 +39,21 @@ function Trading({ account }) {
                     nftList.push({
                         tokenId: i,
                         name: nftInfo.name,
-                        // duration: nftInfo.duration,
-                        price: ethers.utils.formatEther(nftInfo.price)
+                        description: nftInfo.Desc,
+                        price: ethers.utils.formatEther(nftInfo.price),
+                        duration: calculateTimeLeft(nftInfo.duration, nftInfo.DateReleased),
+                        image: nftInfo.image,
+                        adImg: nftInfo.adImg,
+                        msgToOwner: nftInfo.MessageToOwner
                     });
                 }
             }
 
-            console.log(nftList);
+            const initialMessageToOwner = {};
+            nftList.forEach((nft) => {
+                initialMessageToOwner[nft.tokenId] = "";
+            });
+            setMessageToOwner(initialMessageToOwner);
             setBuyNft(nftList);
         } catch (error) {
             console.error('Error fetching NFTs:', error);
@@ -65,7 +80,7 @@ function Trading({ account }) {
             // Wait for the transaction to be mined
             await tx.wait();
 
-            fetchBuyNft();
+            setBuyNft((prev) => prev.filter((item) => item.tokenId !== tokenId));
             console.log('NFT purchased successfully', tx);
         } catch (error) {
             console.error('Error purchasing NFT:', error);
@@ -92,8 +107,12 @@ function Trading({ account }) {
                     nftList.push({
                         tokenId: i,
                         name: nftInfo.name,
-                        // duration: nftInfo.duration,
-                        price: ethers.utils.formatEther(nftInfo.price)
+                        description: nftInfo.Desc,
+                        price: ethers.utils.formatEther(nftInfo.price),
+                        duration: calculateTimeLeft(nftInfo.duration, nftInfo.DateReleased),
+                        image: nftInfo.image,
+                        adImg: nftInfo.adImg,
+                        msgToOwner: nftInfo.MessageToOwner
                     });
                 }
             }
@@ -125,11 +144,18 @@ function Trading({ account }) {
             // Wait for the transaction to be mined
             await tx.wait();
 
+            setSellNft((prev) => prev.filter((item) => item.tokenId !== tokenId));
             console.log('NFT purchased successfully', tx);
         } catch (error) {
             console.error('Error purchasing NFT:', error);
         }
     };
+
+    useEffect(() => {
+        if (account) {
+            fetchBuyNft();
+        }
+    }, [account])
 
     const activeLink = (tab) => {
         if (tab === activeTab) {
@@ -158,13 +184,13 @@ function Trading({ account }) {
                     <li onClick={fetchSellNft} className={activeLink('sell')}>Sell NFT</li>
                 </ul>
             </nav>
-            {true ? (activeTab === 'buy' ? (
+            {account !== '0x0' ? (activeTab === 'buy' ? (
                 buyNft.length > 0 ? (
                     <div className='wholeNftsDetails'>
-                        {buyNft.map((item) => (
-                            <div className='nftWrapper'>
-                                <div key={item.tokenId} className='nftDetail'>
-                                    <div className="essentialDetails" onClick={toggleDescriptiveDetails(item.tokenId)}>
+                        {buyNft.map((item, idx) => (
+                            <div key={item.tokenId} className='nftWrapper'>
+                                <div className='nftDetail'>
+                                    <div className="essentialDetails" onClick={() => toggleDescriptiveDetails(item.tokenId)}>
                                         <div className="leftEssentialDetails">
                                             <img src={item.image} alt={item.name} />
                                             <Link to={`/nft/${item.tokenId}`}>{item.name}</Link>
@@ -178,12 +204,12 @@ function Trading({ account }) {
                                         <input
                                             type="text"
                                             placeholder='Enter the message asked by the NFT distributor. Else you will not get NFT deleiverable'
-                                            value={messageToOwner}
-                                            onChange={(e) => setMessageToOwner(e.target.value)}
+                                            value={messageToOwner[idx]}
+                                            onChange={(e) => setMessageToOwner((prev) => ({ ...prev, [idx]: e.target.value }))}
                                         />
                                     </div>
                                 </div>
-                                <button onClick={buyNftClick(item.tokenId)}>Buy NFT</button>
+                                <button onClick={() => buyNftClick(item.tokenId)}>Buy NFT</button>
                             </div>
                         ))}
                     </div>
@@ -194,8 +220,8 @@ function Trading({ account }) {
                 sellNft.length > 0 ? (
                     <div className='wholeNftsDetails'>
                         {sellNft.map((item) => (
-                            <div className='nftWrapper'>
-                                <div key={item.tokenId} className='nftDetail'>
+                            <div key={item.tokenId} className='nftWrapper'>
+                                <div className='nftDetail'>
                                     <div className="essentialDetails" onClick={() => toggleDescriptiveDetails(item.tokenId)}>
                                         <div className="leftEssentialDetails">
                                             <img src={item.image} alt={item.name} />
@@ -208,7 +234,7 @@ function Trading({ account }) {
                                         <p>{item.Desc}</p>
                                     </div>
                                 </div>
-                                <button onClick={sellNftClick(item.tokenId)}>Sell NFT</button>
+                                <button onClick={() => sellNftClick(item.tokenId)}>Sell NFT</button>
                             </div>
                         ))}
                     </div>

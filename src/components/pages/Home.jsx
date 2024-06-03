@@ -1,8 +1,9 @@
-import React, { useState, useRef ,useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { BsEmojiLaughingFill } from "react-icons/bs";
 import { FaCalendarAlt, FaShoppingBag, FaChartLine } from 'react-icons/fa';
 import detectEthereumProvider from '@metamask/detect-provider';
 import { ethers } from 'ethers';
+import axios from 'axios';
 
 // Importing styles
 import '../styles/Home.css';
@@ -73,15 +74,17 @@ function Home({ account, setAccount }) {
             formData.append('doc', docToJudge);
             formData.append('height', heightCm);
 
-            const response = await fetch('http://127.0.0.1:8000/user/upload', {
-                method: 'POST',
-                body: formData,
+            const response = await axios.post('http://127.0.0.1:8000/user/upload', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
             });
 
             if (response.status === 200) {
                 const data = await response.data;
                 console.log(data);
                 // Send this data to backend of solidity for validation
+                UploadDataLast(data.bmi);
             } else {
                 setError(`Error in validating data: ${response.data.error}`)
             }
@@ -89,8 +92,8 @@ function Home({ account, setAccount }) {
             setError(`Error in validating data: ${error.message}`)
         } finally {
             setLoading(false);
-            setImageToJudge(null);
-            setDocToJudge(null);
+            // setImageToJudge(null);
+            // setDocToJudge(null);
         }
     }
 
@@ -125,12 +128,12 @@ function Home({ account, setAccount }) {
         // Get the last uploaded BMI (assuming the array is not empty)
         const lastBMI = bmiHistory[bmiHistory.length - 1];
 
-        if(lastBMI){
-        console.log('Last uploaded BMI:', lastBMI.toString());
-        
-        if(bmiHistory.length>0){
-            SetLastBmi(parseFloat(lastBMI.toString())/1000);
-        }
+        if (lastBMI) {
+            console.log('Last uploaded BMI:', lastBMI.toString());
+
+            if (bmiHistory.length > 0) {
+                SetLastBmi(parseFloat(lastBMI.toString()) / 1000);
+            }
         }
     }
 
@@ -140,33 +143,33 @@ function Home({ account, setAccount }) {
 
         const contract = new ethers.Contract(UploadAddress, Upload.abi, signer);
         setContract(contract);
-      };
+    };
 
-      const LoginUserEnd = async (date, month, year, gender) => {
+    const LoginUserEnd = async (date, month, year, gender) => {
         try {
-          
+
             await initEthers();
-          
-          const tx = await contract.login(date, month, year, gender);
-          await tx.wait();
-          console.log("User logged in:", tx);
+
+            const tx = await contract.login(date, month, year, gender);
+            await tx.wait();
+            console.log("User logged in:", tx);
         } catch (error) {
-          console.error("Error logging in user:", error);
+            console.error("Error logging in user:", error);
         }
-      };
-    
-      const UploadDataLast = async (bmi) => {
+    };
+
+    const UploadDataLast = async (bmi) => {
         try {
-          
+
             await initEthers();
-          
-          const tx = await contract.recordBMI(bmi);
-          await tx.wait();
-          console.log("BMI uploaded:", tx);
+
+            const tx = await contract.recordBMI(bmi);
+            await tx.wait();
+            console.log("BMI uploaded:", tx);
         } catch (error) {
-          console.error("Error uploading BMI:", error);
+            console.error("Error uploading BMI:", error);
         }
-      };
+    };
 
     return (
         <section className='Home'>
@@ -198,7 +201,7 @@ function Home({ account, setAccount }) {
                         ref={docRef}
                         type="file"
                         onChange={handleDocChange}
-                        allowed='application/pdf'
+                        allowed='.pdf'
                         className='docInput'
                         required
                     />
@@ -224,7 +227,7 @@ function Home({ account, setAccount }) {
             {account !== '0x0' ? <div id="profile">
                 <div className='greeting'>Hi, {account} &nbsp; <BsEmojiLaughingFill /></div>
                 <div className="profileInsight">
-                
+
                     <Card
                         title={`BMI: ${LastBmiVar}`}                                                    // To be replaced
                         cardImg="https://cdn-icons-png.flaticon.com/512/10476/10476452.png"
@@ -267,9 +270,6 @@ function Home({ account, setAccount }) {
                         <div className="bmi-content">
                             <h1>BMI</h1>
                             <p>Your BMI is 24.5. You are in the normal range.</p>
-                            <button onClick={() => LoginUserEnd(1, 1, 2000, 'male')}>Login User</button>
-                            <button onClick={() => UploadDataLast(23000)}>Upload BMI</button>
-                            <button onClick={GetLastBmi}>get bmi</button>
                         </div>
                     )}
                     {activeSection === 'rwd' && (

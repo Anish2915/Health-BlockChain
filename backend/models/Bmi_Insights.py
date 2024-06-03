@@ -2,9 +2,29 @@ import fitz
 import spacy
 import re
 from fastapi import HTTPException
+from PyPDF2 import PdfReader
+from io import BytesIO
 
 nlp = spacy.load("en_core_web_sm")
 
+
+async def get_pdf_text(files):
+    raw_text = ""
+    if files:
+        for file in files:
+            try:
+                pdf_bytes = await file.read()
+                reader = PdfReader(BytesIO(pdf_bytes))
+                text = ""
+                for page in reader.pages:
+                    text += page.extract_text()
+                raw_text += text
+            except Exception as e:
+                raw_text = f"Error reading file. {str(e)}"
+        return raw_text
+    else:
+        return "No file given", ""
+    
 
 def extract_text_from_pdf(file: bytes) -> str:
     document = fitz.open(stream=file, filetype="pdf")
@@ -52,10 +72,14 @@ def extract_information(text: str):
     }
 
 
-async def perform_bmidoc_analysis(user_bmidoc: bytes):
+async def perform_bmidoc_analysis(user_bmidoc):
     try:
+        # text = get_pdf_text(user_bmidoc)
         text = extract_text_from_pdf(user_bmidoc)
         info = extract_information(text)
         return info
+        # print("-------------------------------------------------------------")
+        # print(text)
+        # return text
     except Exception as e:
         raise HTTPException(status_code = 400, detail = str(e))

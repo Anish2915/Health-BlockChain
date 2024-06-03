@@ -20,7 +20,7 @@ function Company({ account }) {
         duration: '',
         nftImg: '',
         adImg: '',
-        msgToOwner: ''
+        msgFromOwner: ''
     });
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -83,7 +83,7 @@ function Company({ account }) {
                 duration: '',
                 nftImg: '',
                 adImg: '',
-                msgToOwner: ''
+                msgFromOwner: ''
             });
         }
     };
@@ -124,7 +124,7 @@ function Company({ account }) {
                         duration: calculateTimeLeft(nftInfo.duration, nftInfo.DateReleased),
                         image: nftInfo.image,
                         adImg: nftInfo.adImg,
-                        msgToOwner: nftInfo.MessageToOwner
+                        msgFromOwner: nftInfo.MessageFromOwner
                     });
                 }
             }
@@ -132,6 +132,17 @@ function Company({ account }) {
             setSelfNft(nftList);
         } catch (error) {
             setError(`Error fetching NFTs: ${error.message}`);
+        }
+    }
+
+    const toggleDescriptiveDetails = (nftTokenId) => {
+        const description = document.getElementById(nftTokenId);
+        if (description) {
+            if (description.style.display === 'flex') {
+                description.style.display = 'none';
+            } else {
+                description.style.display = 'flex';
+            }
         }
     }
 
@@ -229,6 +240,13 @@ function Company({ account }) {
                                 />
                                 <input
                                     type="text"
+                                    placeholder='Enter the message regarding NFT to the traders'
+                                    value={newNft.msgFromOwner}
+                                    onChange={(e) => setNewNft({ ...newNft, msgFromOwner: e.target.value})}
+                                    required
+                                />
+                                <input
+                                    type="text"
                                     placeholder='Enter the public URL of the advertisement (IMAGE ONLY)'
                                     value={newNft.adImg}
                                     onChange={(e) => setNewNft({ ...newNft, adImg: e.target.value })}
@@ -238,14 +256,24 @@ function Company({ account }) {
                         </div>
 
                         {selfNft.length > 0 ? (
-                            <div>
+                            <div className='wholeNftsDetails'>
                                 {selfNft.map((item) => (
-                                    <Link key={item.tokenId} to={`/nft/${item.tokenId}`}>
-                                        <img src={item.image} alt={item.name} />
-                                        <h3>{item.name}</h3>
-                                        <p>{item.description}</p>
-                                        <p>{item.price}</p>
-                                    </Link>
+                                    <div className='nftWrapper'>
+                                        <div key={item.tokenId} className='nftDetail'>
+                                            <div className="essentialDetails" onClick={toggleDescriptiveDetails(item.tokenId)}>
+                                                <div className="leftEssentialDetails">
+                                                    <img src={item.image} alt={item.name} />
+                                                    <Link to={`/nft/${item.tokenId}`}>{item.name}</Link>
+                                                    <p>{`RWD ${item.price}`}</p>
+                                                </div>
+                                                <p>{`${item.duration} days left`}</p>
+                                            </div>
+                                            <div className='description' id={item.tokenId}>
+                                                <p>{item.Desc}</p>
+                                                <p>{item.MessageFromOwner}</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 ))}
                             </div>
                         ) : (

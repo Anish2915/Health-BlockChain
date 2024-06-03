@@ -1,103 +1,236 @@
 .Company {
-    width: 100%;
-    margin-top: 5.290625em;
-    padding: 0.5rem;
-    box-sizing: border-box;
+  width: 100%;
+  margin-top: 5.290625em;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  overflow: auto;
+  height: 79vh;
 }
 
 /* Registration Form */
 .registrationForm {
-    margin: auto;
-    width: min(600px, 80%);
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    background-color: black; /* Set the background color to black */
+  margin: auto;
+  width: min(600px, 80%);
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: black;
+  /* Set the background color to black */
 }
 
 .registrationForm input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-sizing: border-box;
-    opacity: 0.5;
-    background-color: transparent; /* Make the input fields transparent */
-    color: white; /* Set the text color to white */
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+  opacity: 0.5;
+  background-color: transparent;
+  /* Make the input fields transparent */
+  color: white;
+  /* Set the text color to white */
 }
 
 .registrationForm button {
-    background-color: #854d28;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    width: 100%; /* Make the button full width */
-    font-size: 16px;
-    cursor: pointer;
+  background-color: #854d28;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  /* Make the button full width */
+  font-size: 16px;
+  cursor: pointer;
 }
 
 .registrationForm button:hover {
-    background-color: #6e4225;
+  background-color: #6e4225;
 }
 
 
 
 /* NFT Deployment Form */
 .NFTdeploy {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    color: white; /* Set text color to white for black background */
-  }
-  
-  .currentNft {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-weight: bold;
-    margin: 1rem 2rem;
-  }
-  
-  .currentNft img {
-    width: 13rem;
-    height: 13rem;
-    border-radius: 35%;
-    margin-bottom: 2rem;
-  }
-  
-  .nftDeployForm {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem; /* Add spacing between form elements */
-    margin: 1rem 2rem;
-  }
-  
-  .nftDeployForm input,
-  .nftDeployForm button {
-    padding: 10px;
-    border: 1px solid #ccc; /* Light border for inputs and button */
-    border-radius: 1rem;
-    background-color: #f2f2f2; /* Light background color for inputs and button */
-    color: #333; /* Text color for inputs and button */
-  }
-  
-  .nftDeployForm input[type="text"],
-  .nftDeployForm input[type="number"] {
-    width: 30em;
-  }
-  
-  .nftDeployForm button {
-    background-color: #4CAF50; /* Green color for button */
-    color: white; /* White text for button */
-    cursor: pointer; /* Indicate clickable button */
-  }
-  
-  .nftDeployForm button:hover {
-    background-color: #3e8e41; /* Darker green on hover */
-  }
-  
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  /* Set text color to white for black background */
+}
+
+.currentNft {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: bold;
+  margin: 1rem 2rem;
+}
+
+.currentNft img {
+  width: 13rem;
+  height: 13rem;
+  border-radius: 35%;
+  margin-bottom: 2rem;
+}
+
+.nftDeployForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  /* Add spacing between form elements */
+  margin: 1rem 2rem;
+}
+
+.nftDeployForm input,
+.nftDeployForm button {
+  padding: 10px;
+  border: 1px solid #ccc;
+  /* Light border for inputs and button */
+  border-radius: 1rem;
+  background-color: #f2f2f2;
+  /* Light background color for inputs and button */
+  color: #333;
+  /* Text color for inputs and button */
+}
+
+.nftDeployForm input[type="text"],
+.nftDeployForm input[type="number"] {
+  width: 30em;
+}
+
+.nftDeployForm button {
+  background-color: #4CAF50;
+  /* Green color for button */
+  color: white;
+  /* White text for button */
+  cursor: pointer;
+  /* Indicate clickable button */
+}
+
+.nftDeployForm button:hover {
+  background-color: #3e8e41;
+  /* Darker green on hover */
+}
+
+
+/* Style for the wholeNftsDetails container */
+.Company .wholeNftsDetails {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Style for the nftWrapper container */
+.Company .wholeNftsDetails .nftWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  /* border: 1px solid #ccc; */
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 1.2rem;
+  width: 90vw;
+}
+
+/* Style for the nftDetail container */
+.Company .wholeNftsDetails .nftDetail {
+  background-color: #222;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.4rem 1rem;
+  width: 90vw;
+  margin-bottom: 0.5rem;
+}
+
+/* Style for the essentialDetails container */
+.Company .wholeNftsDetails .essentialDetails {
+  font-size: 1em;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+  padding: 0 0.5rem;
+}
+
+/* Style for the leftEssentialDetails container */
+.Company .wholeNftsDetails .leftEssentialDetails {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* Style for the image */
+.Company .wholeNftsDetails .leftEssentialDetails img {
+  width: 3rem;
+  margin: 0 2rem 0 1rem;
+}
+
+/* Style for the Link */
+.Company .wholeNftsDetails .leftEssentialDetails a {
+  color: #ffeea9;
+  text-decoration: none;
+  font-size: 2em;
+  margin-right: 1rem;
+}
+
+.Company .wholeNftsDetails .leftEssentialDetails a:hover {
+  color: #ffcc00;
+}
+
+/* Style for the price */
+.Company .wholeNftsDetails .leftEssentialDetails p {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: aquamarine;
+  font-size: 1.5rem;
+  margin-top: 0.6rem;
+  font-style: italic;
+}
+
+.Company .wholeNftsDetails .essentialDetails>p {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffeea9;
+  margin-top: 0.55rem;
+
+}
+
+/* Style for the showDescription */
+.Company .wholeNftsDetails .description {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
+}
+
+.Company .wholeNftsDetails .description input {
+  width: calc(90vw - 1.6rem);
+  padding: 0.5rem;
+  font-size: 1em;
+  border-radius: 1rem;
+  margin: 0.5rem 0;
+  border: 2px solid red;
+}
+
+/* Style for the Buy NFT button */
+.Company .wholeNftsDetails button {
+  background-color: #ff5722;
+  font-weight: bold;
+  font-size: 800;
+  color: white;
+  padding: 0.5rem 5rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  width: 100%;
+}

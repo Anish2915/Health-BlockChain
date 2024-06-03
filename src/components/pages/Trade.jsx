@@ -12,7 +12,7 @@ function Trading({ account }) {
     const [buyNft, setBuyNft] = useState([]);
     const [sellNft, setSellNft] = useState([]);
     const [activeTab, setActiveTab] = useState('buy');
-    const [messageToOwner, setMessageToOwner] = useState([]);
+    const [messageToOwner, setMessageToOwner] = useState({});
 
     const calculateTimeLeft = (duration, dateReleased) => {
         const currentTimestamp = Math.floor(Date.now() / 1000);
@@ -55,8 +55,11 @@ function Trading({ account }) {
 
             // console.log(nftList);
             // console.log(nftList.length);
-            const newArray = new Array(nftList.length).fill('');
-            setMessageToOwner(newArray);
+            const initialMessageToOwner = {};
+            nftList.forEach((nft) => {
+                initialMessageToOwner[nft.tokenId] = "";
+            });
+            setMessageToOwner(initialMessageToOwner);
             // console.log("final " , newArray);
 
             setBuyNft(nftList);
@@ -206,15 +209,7 @@ function Trading({ account }) {
                                             type="text"
                                             placeholder='Enter the message asked by the NFT distributor. Else you will not get NFT deleiverable'
                                             value={messageToOwner[idx] ? messageToOwner[idx] : ''} // Check for undefined
-                                            onChange={(e) => setMessageToOwner((prev) => {
-                                                console.log(idx);
-                                                const masg = e.target.value;
-                                                console.log(masg);
-                                                const updatedMessage = [...prev];
-                                                console.log("the updated mmsg" , updatedMessage);
-                                                updatedMessage[idx] = e.target.value;
-                                                return updatedMessage;
-                                            })}
+                                            onChange={(e) => setMessageToOwner((prev) => ({ ...prev, [idx]: e.target.value }))}
                                         />
                                     </div>
                                 </div>

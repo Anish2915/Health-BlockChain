@@ -9,3 +9,10 @@ body {
     font-size: x-large;
     margin-top: 2rem;
 }
+
+.error {
+    color: red;
+    font-weight: bold;
+    font-size: x-large;
+    margin-top: 2rem;
+}

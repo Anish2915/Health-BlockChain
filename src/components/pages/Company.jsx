@@ -83,7 +83,7 @@ function Company({ account }) {
                 duration: '',
                 nftImg: '',
                 adImg: '',
-                msgToOwner: ''
+                msgFromOwner: ''
             });
         }
     };
@@ -133,6 +133,17 @@ function Company({ account }) {
             setSelfNft(nftList);
         } catch (error) {
             setError(`Error fetching NFTs: ${error.message}`);
+        }
+    }
+
+    const toggleDescriptiveDetails = (nftTokenId) => {
+        const description = document.getElementById(nftTokenId);
+        if (description) {
+            if (description.style.display === 'flex') {
+                description.style.display = 'none';
+            } else {
+                description.style.display = 'flex';
+            }
         }
     }
 

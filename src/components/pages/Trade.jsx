@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ethers } from 'ethers';
 
@@ -12,7 +12,7 @@ function Trading({ account }) {
     const [buyNft, setBuyNft] = useState([]);
     const [sellNft, setSellNft] = useState([]);
     const [activeTab, setActiveTab] = useState('buy');
-    const [messageToOwner, setMessageToOwner] = useState([]);
+    const [messageToOwner, setMessageToOwner] = useState({});
 
     const calculateTimeLeft = (duration, dateReleased) => {
         const currentTimestamp = Math.floor(Date.now() / 1000);
@@ -53,11 +53,11 @@ function Trading({ account }) {
                 }
             }
 
-            // console.log(nftList);
-            // console.log(nftList.length);
-            const newArray = new Array(nftList.length).fill('');
-            setMessageToOwner(newArray);
-            // console.log("final " , newArray);
+            const initialMessageToOwner = {};
+            nftList.forEach((nft) => {
+                initialMessageToOwner[nft.tokenId] = "";
+            });
+            setMessageToOwner(initialMessageToOwner);
 
             setBuyNft(nftList);
             console.log("nftlis ke baad ka");
@@ -158,6 +158,12 @@ function Trading({ account }) {
         }
     };
 
+    useEffect(() => {
+        if (account) {
+            fetchBuyNft();
+        }
+    }, [account])
+
     const activeLink = (tab) => {
         if (tab === activeTab) {
             return 'active';
@@ -205,20 +211,12 @@ function Trading({ account }) {
                                         <input
                                             type="text"
                                             placeholder='Enter the message asked by the NFT distributor. Else you will not get NFT deleiverable'
-                                            value={messageToOwner[idx] ? messageToOwner[idx] : ''} // Check for undefined
-                                            onChange={(e) => setMessageToOwner((prev) => {
-                                                console.log(idx);
-                                                const masg = e.target.value;
-                                                console.log(masg);
-                                                const updatedMessage = [...prev];
-                                                console.log("the updated mmsg" , updatedMessage);
-                                                updatedMessage[idx] = e.target.value;
-                                                return updatedMessage;
-                                            })}
+                                            value={messageToOwner[idx]}
+                                            onChange={(e) => setMessageToOwner((prev) => ({ ...prev, [idx]: e.target.value }))}
                                         />
                                     </div>
                                 </div>
-                                <button onClick={() => buyNftClicked(item.tokenId)}>Buy rNFT</button>
+                                <button onClick={() => buyNftClick(item.tokenId)}>Buy NFT</button>
                             </div>
                         ))}
                     </div>

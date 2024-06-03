@@ -57,7 +57,6 @@ contract CompanyNFT is Ownable {
         nfts.push(NFT({
             name: name,
             price: price,
-            owner: msg.sender,
             RealOwner: msg.sender,
             CurrentlyUnder: false,
             NftImage: _nftImage,

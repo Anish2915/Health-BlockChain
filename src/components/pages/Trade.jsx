@@ -6,6 +6,8 @@ import { ethers } from 'ethers';
 import '../styles/Trade.css';
 import CompanyNFT from '../../truffle_abis/CompanyNFT.json';
 
+const contractAddress = '0x567ABFA3312A6619f34549920Dc65e3cd78bB4a1'; // company nft
+
 function Trading({ account }) {
     const [buyNft, setBuyNft] = useState([]);
     const [sellNft, setSellNft] = useState([]);
@@ -20,31 +22,33 @@ function Trading({ account }) {
     };
 
     const fetchBuyNft = async () => {
+        console.log("Fetching");
         setActiveTab('buy');
         try {
             // Connect to Ethereum provider
             const provider = new ethers.providers.Web3Provider(window.ethereum);
-            const contractAddress = '0x03dafb3618dAf48CeC9Ae0A419fa0F3E7A62a002'; // Contract address
+            //const contractAddress = '0x03dafb3618dAf48CeC9Ae0A419fa0F3E7A62a002'; // Contract address
             const contract = new ethers.Contract(contractAddress, CompanyNFT.abi, provider);
 
             // Fetch NFT count
 
             const nftCount = await contract.nextTokenId();
-
+            
             // Fetch NFTs
             const nftList = [];
             for (let i = 0; i < nftCount; i++) {
                 const nftInfo = await contract.nfts(i);
+                
                 if (nftInfo.CurrentlyUnder == false) {
                     nftList.push({
                         tokenId: i,
                         name: nftInfo.name,
-                        description: nftInfo.Desc,
+                        Desc: nftInfo.Desc,
                         price: ethers.utils.formatEther(nftInfo.price),
-                        duration: calculateTimeLeft(nftInfo.duration, nftInfo.DateReleased),
-                        image: nftInfo.image,
-                        adImg: nftInfo.adImg,
-                        msgToOwner: nftInfo.MessageToOwner
+                        duration: calculateTimeLeft(nftInfo.Duration, nftInfo.DateReleased),
+                        image: nftInfo.NftImage,
+                        adImg: nftInfo.AddImage,
+                        msgToOwner: nftInfo.MessageFromOwner
                     });
                 }
             }
@@ -54,20 +58,23 @@ function Trading({ account }) {
                 initialMessageToOwner[nft.tokenId] = "";
             });
             setMessageToOwner(initialMessageToOwner);
+
             setBuyNft(nftList);
+            console.log("nftlis ke baad ka");
         } catch (error) {
             console.error('Error fetching NFTs:', error);
         }
     };
 
-    const buyNftClick = async (tokenId) => {
+    const buyNftClicked = async (tokenId) => {
+        console.log("Buy clicked");
         try {
             // Connect to Ethereum provider
             console.log(tokenId);
 
             const provider = new ethers.providers.Web3Provider(window.ethereum);
             const signer = provider.getSigner();
-            const contractAddress = '0x03dafb3618dAf48CeC9Ae0A419fa0F3E7A62a002'; // Contract address
+            //const contractAddress = '0x03dafb3618dAf48CeC9Ae0A419fa0F3E7A62a002'; // Contract address
             const contract = new ethers.Contract(contractAddress, CompanyNFT.abi, signer);
 
 
@@ -75,7 +82,7 @@ function Trading({ account }) {
             // console.log(formattedPrice);
 
             // Call the buyNFT function from the smart contract
-            const tx = await contract.buyNFT(tokenId);
+            const tx = await contract.buyNFT(tokenId,"msg To Owner");
 
             // Wait for the transaction to be mined
             await tx.wait();
@@ -92,7 +99,7 @@ function Trading({ account }) {
         try {
             // Connect to Ethereum provider
             const provider = new ethers.providers.Web3Provider(window.ethereum);
-            const contractAddress = '0x03dafb3618dAf48CeC9Ae0A419fa0F3E7A62a002'; // Contract address
+            //const contractAddress = '0x03dafb3618dAf48CeC9Ae0A419fa0F3E7A62a002'; // Contract address
             const contract = new ethers.Contract(contractAddress, CompanyNFT.abi, provider);
 
             // Fetch NFT count
@@ -104,20 +111,20 @@ function Trading({ account }) {
             for (let i = 0; i < nftCount; i++) {
                 const nftInfo = await contract.nfts(i);
                 if (nftInfo.owner.toLowerCase() === account) {
+                    console.log(nftInfo.owner);
                     nftList.push({
                         tokenId: i,
                         name: nftInfo.name,
-                        description: nftInfo.Desc,
+                        Desc: nftInfo.Desc,
                         price: ethers.utils.formatEther(nftInfo.price),
-                        duration: calculateTimeLeft(nftInfo.duration, nftInfo.DateReleased),
-                        image: nftInfo.image,
-                        adImg: nftInfo.adImg,
+                        duration: calculateTimeLeft(nftInfo.Duration, nftInfo.DateReleased),
+                        image: nftInfo.NftImage,
+                        adImg: nftInfo.AddImage,
                         msgToOwner: nftInfo.MessageToOwner
                     });
                 }
             }
-
-            console.log(nftList);
+            
             setSellNft(nftList);
         } catch (error) {
             console.error('Error fetching NFTs:', error);
@@ -131,7 +138,7 @@ function Trading({ account }) {
 
             const provider = new ethers.providers.Web3Provider(window.ethereum);
             const signer = provider.getSigner();
-            const contractAddress = '0x03dafb3618dAf48CeC9Ae0A419fa0F3E7A62a002'; // Contract address
+            //const contractAddress = '0x03dafb3618dAf48CeC9Ae0A419fa0F3E7A62a002'; // Contract address
             const contract = new ethers.Contract(contractAddress, CompanyNFT.abi, signer);
 
 

@@ -11,8 +11,8 @@ import '../styles/Home.css';
 // Importing comp
 import Card from '../comp/Card';
 import Upload from '../../truffle_abis/Upload.json'
-const RewardAddress = '0x5B105498b5d396CdD17C867F6D5693a6108479eA';
-const UploadAddress = '0x87a99eA7299b5FeE9e56CAAd09af14B352AD892E';
+const RewardAddress = '0x22aE45c5a2cA565d8dbED925E60197B1c68aA160';
+const UploadAddress = '0xbEDaF514218102d3723D9BecB358Ac7B324E9c75';
 
 function Home({ account, setAccount }) {
     const [imageToJudge, setImageToJudge] = useState(null);

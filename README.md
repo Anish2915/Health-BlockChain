@@ -93,9 +93,6 @@
 ## 🤝 Contributing
 We welcome contributions to the project! Feel free to debug, find error and flaws or even creating a pull request.
 
-## 📜 License
-This project is licensed under the MIT license. See the `LICENSE` file for details.
-
 ## <div id='author'>🎓 Author</div>
 
 <p> <a href="https://github.com/Anish2915"><b>Anish Kumar </b><a/></p>
@@ -103,12 +100,15 @@ This project is licensed under the MIT license. See the `LICENSE` file for detai
 
 ## 📅 Roadmap
 - **Phase 1**: Launch the NFT marketplace and reward system.
-- **Phase 2**: Integrate advanced AI for BMI verification.
-- **Phase 3**: Expand cross-chain functionality.
-- **Phase 4**: Develop mobile application for better accessibility.
+- **Phase 2**: Integrating AI for BMI and posture measurement.
+- **Phase 3**: Development of NFT details for further insights.
+- **Phase 4**: Company perspective NFT deployment for promotion of company deploying respective NFT.
 
 ## 💡 Acknowledgments
 We express our gratitude to the resources available on YouTube, specially Patrick Collins for plenty of resources available on his channel.
+
+## 📜 License
+This project is licensed under the MIT license. See the `LICENSE` file for details.
 
 ---
 

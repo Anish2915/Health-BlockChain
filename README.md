@@ -1,46 +1,105 @@
-# [Project Name]: A Healthy Rewards Marketplace Powered by NFTs and Blockchain
+# Health Chain: A Healthy Rewards Marketplace Powered by NFTs and Blockchain
 
 ![Banner Image](path/to/banner/image.jpg)
 
 ## ✨ Introduction
 
-**[Project Name]** is a revolutionary platform that leverages blockchain technology to create a win-win ecosystem for users who prioritize health and well-being. It seamlessly combines the excitement of Non-Fungible Tokens (NFTs) with a reward system that incentivizes healthy habits.
+**Health Chain** is a revolutionary platform that leverages blockchain technology to create a win-win ecosystem for users who prioritize health and well-being. It seamlessly combines the excitement of Non-Fungible Tokens (NFTs) with a reward system that incentivizes healthy habits.
+
+##  📝 Table of Contents
+
+1. [Overview](#overview)
+2. [Inspiration](#inspiration)
+3. [Core Features](#core-features)
+4. [Technological Stack](#technological-stack)
+5. [Getting Started](#getting-started)
+6. [Contribution](#contribution)
+7. [RoadMap](#roadmap)
+8. [Author](#author)
+9. [License](#license)
 
 ## 🚀 Core Features
 
 ### Rewardable NFT Ownership
-- **Purchase Unique NFTs**: Acquire distinctive NFTs that grant daily rewards like 10 Gems (our platform's reward token).
+- **Purchase Unique NFTs**: Acquire distinctive NFTs that can grant rewards like some gems in Clash of Clans per month, premium of a service (if they deploy their NFT).
 - **Earn by Holding and Selling**: Earn back a portion of your investment when you sell the NFT.
 
 ### Healthy Lifestyle Incentives
 - **BMI-Based Rewards**: Upload your weekly Body Mass Index (BMI) to earn reward tokens. The system encourages progress towards a healthy BMI range.
+- **Health Tracker**: Track your health with our smart dApp with all things decentralised and no fear of private data leaking.
 
 ### Dual BMI Verification
-- **AI Image Analysis**: Secure weight detection using AI image analysis.
+- **AI Image Analysis**: Secure body posture and structure monitoring using AI and Machine Learning.
 - **Doctor-Certified BMI Certificates**: Upload doctor-certified BMI calculation certificates authenticated by Chainlink oracles.
 
 ### Chainlink Integration
 - **Data Feed Verification**: Chainlink's Data Feed verifies doctor names and hospital credentials for certificate authenticity.
 - **Randomized NFT Minting**: Securely generate unique NFT addresses using Chainlink's Verifiable Random Function (VRF) for fair and transparent distribution.
-- **Cross-Chain Functionality**: Enable seamless asset transfer between different blockchains with Chainlink's Cross-Chain Link (if applicable).
+- **Cross-Chain Functionality**: Enable seamless asset transfer between different blockchains with Chainlink's Cross-Chain Link (not applicable).
+
+## 🕵🏼‍♂️ Inspiration
+
+### Our inspiration for this project came from the desire to merge health and technology in a way that motivates people to stay fit while leveraging the benefits of blockchain.
+### We saw an opportunity to use AI for accurate health assessments and blockchain for secure, transparent rewards and transactions. By integrating Chainlink VRF, we ensure fairness and security in our system. ### Our goal is to create a community where users are rewarded for their health efforts and can engage with digital assets in a meaningful way. This project aims to make fitness fun, rewarding, and part of the digital economy.
 
 ## 🛠️ Technology Stack
-- **Blockchain**: [Specify your chosen blockchain here]
+- **Blockchain**: Ethereum blockchain
 - **Smart Contracts**: Solidity
 - **Front-End Development**: React
 - **Decentralized Oracle Network**: Chainlink
+- **Backend AI processing**: Python, spacy, opencv
 
 ## 🏁 Getting Started
-1. **Clone the Repository**: `git clone https://github.com/your-repo-url`
-2. **Install Dependencies**: `npm install`
-3. **Run the Application**: `npm start`
-4. **Deploy Smart Contracts**: Follow the instructions in the `CONTRIBUTING.md` file.
+
+1. **Clone the Repository**:
+     ```sh
+       git clone https://github.com/your-repo-url
+     ```
+     
+2. **Install Frontend Dependencies**:
+     ```sh
+       npm install
+     ```
+     
+3. **Run the Application**:
+     ```sh
+       npm start
+     ```
+
+4. **Backend Configuration**:
+   Open another terminal, navigate to backend and create a virtual environment.
+   ```sh
+     cd backend
+   ```
+   ```sh
+     python -m venv health
+   ```
+  <br/>
+  Open virtual environment and install dependencies.
+  ```sh
+    health\Scripts\activate.ps1
+  ```
+  ```sh
+    pip install -r requirements.txt
+  ```
+
+5. **Start the backend server**:
+   ```sh
+     uvicorn main:app --reload
+   ```
+  
+6. **Deploy Smart Contracts**: Deploy the contract using Truffle compiler.
 
 ## 🤝 Contributing
-We welcome contributions to the project! Please refer to the `CONTRIBUTING.md` file for guidelines on code style, testing practices, and the pull request process.
+We welcome contributions to the project! Feel free to debug, find error and flaws or even creating a pull request.
 
 ## 📜 License
-This project is licensed under the [License Name] license. See the `LICENSE` file for details.
+This project is licensed under the MIT license. See the `LICENSE` file for details.
+
+## <div id='author'>🎓 Author</div>
+
+<p> <a href="https://github.com/Anish2915"><b>Anish Kumar </b><a/></p>
+<p> <a href="https://github.com/prakharmoses"><b>Prakhar Moses </b><a/></p>
 
 ## 📅 Roadmap
 - **Phase 1**: Launch the NFT marketplace and reward system.
@@ -49,24 +108,7 @@ This project is licensed under the [License Name] license. See the `LICENSE` fil
 - **Phase 4**: Develop mobile application for better accessibility.
 
 ## 💡 Acknowledgments
-We express our gratitude to our collaborators, mentors, and external resources that aided in the project's development.
-
-## ✨ Additional Considerations for a Beautiful README
-
-### Visual Appeal
-- Add a captivating banner image or video relevant to your project's theme at the top of the README.
-
-### Structure and Readability
-- Use clear headings, bullet points, and code blocks to enhance readability and guide users through the information.
-
-### Community Links
-- Consider including links to your project's social media channels or discussion forums to foster community engagement.
-
-### Badges
-- Showcase badges for supported technologies or frameworks to add credibility and visual interest.
-
-### Continuous Improvement
-- Regularly update the README with new developments, fixes, or contributions to ensure it remains accurate and reflects the project's current state.
+We express our gratitude to the resources available on YouTube, specially Patrick Collins for plenty of resources available on his channel.
 
 ---
 
@@ -74,4 +116,4 @@ We express our gratitude to our collaborators, mentors, and external resources t
 
 ---
 
-Let's build a healthier future together with [Project Name]!
+Let's build a healthier future together with **Health Chain**!

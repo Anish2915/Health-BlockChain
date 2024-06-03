@@ -11496,7 +11496,8 @@
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2024-06-02T18:51:20.959Z",
+  "updatedAt": "2024-06-02T20:12:49.266Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {},

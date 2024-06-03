@@ -46,7 +46,7 @@ contract Upload is Ownable {
 
     // BMI is a multiple of 10^3
     function recordBMI(uint256 bmi) public {
-        require(registeredUsers[msg.sender], "User not registered");
+        //require(registeredUsers[msg.sender], "User not registered");
 
         User storage user = users[msg.sender];
         user.bmiHistory.push(bmi);

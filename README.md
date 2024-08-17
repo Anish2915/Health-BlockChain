@@ -49,6 +49,13 @@
 - **Decentralized Oracle Network**: Chainlink
 - **Backend AI processing**: Python, spacy, opencv
 
+## video
+
+
+https://github.com/user-attachments/assets/fa783a21-2f6e-4b83-aaab-2adf78b3e517
+
+
+
 ## 🏁 Getting Started
 
 1. **Clone the Repository**:
